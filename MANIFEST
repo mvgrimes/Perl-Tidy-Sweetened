@@ -1,0 +1,6 @@
+Build.PL
+Changes
+lib/Perl/Tidy/Sweetend.pm
+MANIFEST			This list of files
+script/perltidier
+t/basic.t

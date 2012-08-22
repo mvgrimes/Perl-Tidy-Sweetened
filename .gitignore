@@ -1,0 +1,16 @@
+Build
+META.yml
+MYMETA.yml
+MYMETA.json
+MANIFEST.bak
+Makefile.PL
+Makefile
+_build/
+blib/
+App-EditorTools*
+lib/PPIx
+Changes.bak
+*.swp
+.DS_Store
+Session.vim
+t.pl
