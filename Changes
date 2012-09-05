@@ -1,5 +1,8 @@
 Changes for Perl::Tidy::Sweetend
 
+0.11 - Tue Sep  4 20:03:08 EDT 2012
+    Improves testing setup and implements formatting for "func"
+
 0.10 - Wed Aug 22 11:53:23 EDT 2012
     Initial implementation. Much of the code and the idea come from
     Jonathan Swartz's blog post: 
