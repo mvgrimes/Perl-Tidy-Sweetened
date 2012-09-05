@@ -4,7 +4,7 @@ use strict;
 use warnings;
 use Perl::Tidy qw();
 
-our $VERSION = '0.10';
+our $VERSION = '0.11';
 
 sub perltidy {
     return Perl::Tidy::perltidy(
@@ -20,8 +20,7 @@ sub prefilter {
     no warnings 'uninitialized';
 
     # Convert func xxxx (signature) -> sub
-    # Don't format the signature
-    # s/^func (\w+)\s+(\([^)]*)\)? .*?$/sub $1 $3 \#__FUNC $2/gm;
+    s/^\s*\Kfunc\s+(\w+)\s+(\([^)]*\))?(.*?)$/sub $1 $3 \#__FUNC $2/gm;
 
     # Convert method -> sub
     s/^\s*\Kmethod\s+(\w+)\s*(\([^)]*\))?(.*?)$/sub $1 $3 \#__METHOD $2/gm;
@@ -37,7 +36,7 @@ sub postfilter {
     # warn "========\n$_";
 
     # Convert func back
-    # s/\W\Ksub\((.*?)\s* \#__FUNC/func($1/gm;
+    s/^\s*\Ksub\s+(\w+)\b(.*?) *\#__FUNC( \([^)]+\))? */func $1$3$2/gm;
 
     # Convert sub and signature back to method
     s/^\s*\Ksub\s+(\w+)\b(.*?) *\#__METHOD( \([^)]+\))? */method $1$3$2/gm;
@@ -64,16 +63,6 @@ Perl::Tidy::Sweetend - Tweaks to Perl::Tidy to work with modern method systanx
 =head1 DESCRIPTION
 
 Fixes...
-
-=head1 BACKGROUND
-
-The L<Padre> Perl editor team developed some very interesting L<PPI> based
-refactoring tools for their editor. Working with the L<Padre> team, those
-routines were abstracted into L<PPIx::EditorTools> in order to make them 
-available to alternative editors.
-
-The initial implementation was developed for Vim. Pat Regan contributed
-the emacs bindings. Other editor bindings are encouraged/welcome.
 
 =head1 SEE ALSO
 

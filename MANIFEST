@@ -2,5 +2,12 @@ Build.PL
 Changes
 lib/Perl/Tidy/Sweetend.pm
 MANIFEST			This list of files
+META.json
+META.yml
+README
 script/perltidier
 t/basic.t
+t/lib/TidierTests.pm
+t/method-signature-simple.t
+t/moosex-declare.t
+t/moosex-method-signatures.t
