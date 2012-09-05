@@ -1,0 +1,28 @@
+NAME
+    Perl::Tidy::Sweetend - Tweaks to Perl::Tidy to work with modern method
+    systanx
+
+DESCRIPTION
+    Fixes...
+
+SEE ALSO
+    Perl::Tidy
+
+BUGS
+    Please report any bugs or suggestions at
+    <http://rt.cpan.org/NoAuth/Bugs.html?Dist=Perl-Tidy-Sweetend>
+
+AUTHOR
+    Mark Grimes, <mgrimes@cpan.org>
+
+    Ideal and much of original code taken from Jonathan Swartz blog
+    (http://www.openswartz.com/2010/12/19/perltidy-and-method-happy-together
+    /).
+
+COPYRIGHT AND LICENSE
+    Copyright (C) 2012 by Mark Grimes
+
+    This library is free software; you can redistribute it and/or modify it
+    under the same terms as Perl itself, either Perl version 5.8.2 or, at
+    your option, any later version of Perl 5 you may have available.
+

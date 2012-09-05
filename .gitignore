@@ -8,10 +8,9 @@ Makefile.PL
 Makefile
 _build/
 blib/
-App-EditorTools*
+Perl-Tidy-Sweetened*
 lib/PPIx
 Changes.bak
-README
 *.swp
 .DS_Store
 Session.vim

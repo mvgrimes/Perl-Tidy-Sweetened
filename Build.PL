@@ -1,7 +1,7 @@
 use Module::Build;
 
 my $build = Module::Build->new(
-    module_name   => 'Perl::Tidy::Sweetend',
+    module_name   => 'Perl::Tidy::Sweetened',
     license       => 'perl',
     create_readme => 1,
     script_files  => [qw(script/perltidier)],
@@ -17,8 +17,8 @@ my $build = Module::Build->new(
     meta_merge => {
         resources => {
             bugtracker =>
-              'http://rt.cpan.org/NoAuth/Bugs.html?Dist=Perl-Tidy-Sweetend',
-            repository => 'http://github.com/mvgrimes/perl-tidy-sweetend'
+              'http://rt.cpan.org/NoAuth/Bugs.html?Dist=Perl-Tidy-Sweetened',
+            repository => 'http://github.com/mvgrimes/perl-tidy-sweetened'
         }
     },
 );

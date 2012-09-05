@@ -27,3 +27,14 @@ method morning (Str $name) {            | method morning (Str $name) {
 method hello (:$age where { $_ > 0 }) { | method hello (:$age where { $_ > 0 }) {
 }                                       | }
 
+==== Multiple line signatures ==========================================
+method name1 (Str $bar,                 | method name1 (Str $bar,
+              Int $foo where { $_ > 0 } |               Int $foo where { $_ > 0 }
+             ) {                        |              ) {
+}                                       | }
+
+==== Multiple line signatures w/ comment  ===============================
+method name1 (Str $bar,                 | method name1 (Str $bar,
+              Int $foo where { $_ > 0 } |               Int $foo where { $_ > 0 }
+             ) {   # Fun stuff          |              ) { # Fun stuff
+}                                       | }

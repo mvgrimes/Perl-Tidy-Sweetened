@@ -1,6 +1,6 @@
 package TidierTests;
 
-use Perl::Tidy::Sweetend;
+use Perl::Tidy::Sweetened;
 use Test::Most;
 
 sub do_tests {
@@ -40,7 +40,7 @@ sub test_tidy {
     my $expected = join '', @expected;
 
     my @tidied;
-    Perl::Tidy::Sweetend::perltidy(
+    Perl::Tidy::Sweetened::perltidy(
         source      => \$raw,
         destination => \@tidied,
         perltidyrc  => undef,
