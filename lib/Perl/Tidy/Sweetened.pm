@@ -4,7 +4,7 @@ use strict;
 use warnings;
 use Perl::Tidy qw();
 
-our $VERSION = '0.12';
+our $VERSION = '0.13';
 
 sub perltidy {
     return Perl::Tidy::perltidy(
@@ -150,7 +150,7 @@ L<Perl::Tidy>
 =head1 BUGS
 
 Please report any bugs or suggestions at
-L<http://rt.cpan.org/NoAuth/Bugs.html?Dist=Perl-Tidy-Sweetend>
+L<http://rt.cpan.org/NoAuth/Bugs.html?Dist=Perl-Tidy-Sweetened>
 
 =head1 AUTHOR
 

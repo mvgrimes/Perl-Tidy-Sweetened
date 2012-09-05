@@ -1,5 +1,8 @@
 Changes for Perl::Tidy::Sweetend
 
+0.13 - Wed Sep  5 14:51:21 EDT 2012
+    Fixes lingering typos
+
 0.12 - Tue Sep  4 22:39:26 EDT 2012
     Fixes typo in package name, adds pod and comments
 

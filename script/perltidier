@@ -2,5 +2,5 @@
 
 use strict;
 use warnings;
-use Perl::Tidy::Sweetend;
+use Perl::Tidy::Sweetened;
 Perl::Tidy::Sweetend::perltidy();
