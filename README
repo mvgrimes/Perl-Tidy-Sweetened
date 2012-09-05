@@ -1,9 +1,29 @@
 NAME
-    Perl::Tidy::Sweetend - Tweaks to Perl::Tidy to work with modern method
-    systanx
+    Perl::Tidy::Sweetened - Tweaks to Perl::Tidy to support some syntactic
+    sugar
 
 DESCRIPTION
-    Fixes...
+    There are a number of modules on CPAN that allow users to write their
+    classes with a more "modern" syntax. These tools eliminate the need to
+    shift off $self, can support type checking and offer other improvements.
+    Unfortunately, they can break the support tools that the Perl community
+    has come to rely on. This module attempts to work around those issues.
+
+    The module uses Perl::Tidy's "prefilter" and "postfilter" hooks to
+    support "method" and "func" keywords, including the (possibly
+    multi-line) parameter lists. This is quite an ugly hack, but it is the
+    recommended method of supporting these new keywords (see the 2010-12-17
+    entry in the Perl::Tidy CHANGES
+    <https://metacpan.org/source/SHANCOCK/Perl-Tidy-20120714/CHANGES> file).
+    The resulting formatted code will leave the parameter lists untouched.
+
+    "Perl::Tidy::Sweetened" attempts to support the syntax outlined in:
+
+    *   Method::Signature::Simple
+
+    *   MooseX::Method::Signatures
+
+    *   MooseX::Declare
 
 SEE ALSO
     Perl::Tidy
@@ -15,9 +35,9 @@ BUGS
 AUTHOR
     Mark Grimes, <mgrimes@cpan.org>
 
-    Ideal and much of original code taken from Jonathan Swartz blog
-    (http://www.openswartz.com/2010/12/19/perltidy-and-method-happy-together
-    /).
+    The idea and much of original code taken from Jonathan Swartz' blog
+    <http://www.openswartz.com/2010/12/19/perltidy-and-method-happy-together
+    />.
 
 COPYRIGHT AND LICENSE
     Copyright (C) 2012 by Mark Grimes

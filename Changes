@@ -1,5 +1,8 @@
 Changes for Perl::Tidy::Sweetend
 
+0.12 - Tue Sep  4 22:39:26 EDT 2012
+    Fixes typo in package name, adds pod and comments
+
 0.11 - Tue Sep  4 20:03:08 EDT 2012
     Improves testing setup and implements formatting for "func"
 
