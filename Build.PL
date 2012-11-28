@@ -12,6 +12,7 @@ my $build = Module::Build->new(
     build_requires => {
         'Test::Differences' => 0,
         'Test::More'        => 0.87,
+        'Test::Most'        => 0,
     },
     configure_requires => { 'Module::Build' => '0.36', },
     meta_merge => {

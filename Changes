@@ -1,5 +1,8 @@
 Changes for Perl::Tidy::Sweetend
 
+0.15 - Wed Nov 28 17:53:06 EST 2012
+    Adds missing prereq
+
 0.14 - Wed Sep  5 14:54:50 EDT 2012
     Fixes lingering typos
 

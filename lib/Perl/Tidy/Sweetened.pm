@@ -4,7 +4,7 @@ use strict;
 use warnings;
 use Perl::Tidy qw();
 
-our $VERSION = '0.14';
+our $VERSION = '0.15';
 
 sub perltidy {
     return Perl::Tidy::perltidy(
