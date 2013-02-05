@@ -1,5 +1,7 @@
 #!/usr/bin/env perl
 
+# ABSTRACT: Script to execute Perl::Tidy::Sweetened cleanup
+
 use strict;
 use warnings;
 use Perl::Tidy::Sweetened;

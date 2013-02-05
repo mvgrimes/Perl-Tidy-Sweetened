@@ -2,6 +2,9 @@ NAME
     Perl::Tidy::Sweetened - Tweaks to Perl::Tidy to support some syntactic
     sugar
 
+VERSION
+    version 0.15
+
 DESCRIPTION
     There are a number of modules on CPAN that allow users to write their
     classes with a more "modern" syntax. These tools eliminate the need to
@@ -28,6 +31,10 @@ DESCRIPTION
 SEE ALSO
     Perl::Tidy
 
+    The idea and much of original code taken from Jonathan Swartz' blog
+    <http://www.openswartz.com/2010/12/19/perltidy-and-method-happy-together
+    />.
+
 BUGS
     Please report any bugs or suggestions at
     <http://rt.cpan.org/NoAuth/Bugs.html?Dist=Perl-Tidy-Sweetened>
@@ -35,14 +42,9 @@ BUGS
 AUTHOR
     Mark Grimes, <mgrimes@cpan.org>
 
-    The idea and much of original code taken from Jonathan Swartz' blog
-    <http://www.openswartz.com/2010/12/19/perltidy-and-method-happy-together
-    />.
-
 COPYRIGHT AND LICENSE
-    Copyright (C) 2012 by Mark Grimes
+    This software is copyright (c) 2013 by Mark Grimes, <mgrimes@cpan.org>.
 
-    This library is free software; you can redistribute it and/or modify it
-    under the same terms as Perl itself, either Perl version 5.8.2 or, at
-    your option, any later version of Perl 5 you may have available.
+    This is free software; you can redistribute it and/or modify it under
+    the same terms as the Perl 5 programming language system itself.
 

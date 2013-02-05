@@ -15,3 +15,4 @@ Changes.bak
 .DS_Store
 Session.vim
 t.pl
+*.bak
