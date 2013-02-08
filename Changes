@@ -1,5 +1,11 @@
 Changes for Perl::Tidy::Sweetend
 
+0.16 - Fri Feb  8 16:19:37 EST 2013
+    Bumps the perl version requirement
+    We want to use \K in our regexps. This was introduced in 5.10. Since
+    the purpose of this is to support modern Perl syntax, we'll just
+    assume users are using a modern version of perl.
+
 0.15 - Wed Nov 28 17:53:06 EST 2012
     Adds missing prereq
 

@@ -6,7 +6,7 @@ use strict;
 use warnings;
 use Perl::Tidy qw();
 
-our $VERSION = '0.15';
+our $VERSION = '0.16';
 
 sub perltidy {
     return Perl::Tidy::perltidy(
@@ -119,7 +119,7 @@ Perl::Tidy::Sweetened - Tweaks to Perl::Tidy to support some syntactic sugar
 
 =head1 VERSION
 
-version 0.15
+version 0.16
 
 =head1 DESCRIPTION
 
