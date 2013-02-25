@@ -1,5 +1,10 @@
 Changes for Perl::Tidy::Sweetend
 
+0.17 - Mon Feb 25 15:53:33 EST 2013
+    Fixes RT#83511 - empty parameter list improperly rewritten
+    - Addresses a bug, reported by Kent Fredric, where "method for() {" was
+      converted to "method foo { ()"
+
 0.16 - Fri Feb  8 16:19:37 EST 2013
     Bumps the perl version requirement
     We want to use \K in our regexps. This was introduced in 5.10. Since
