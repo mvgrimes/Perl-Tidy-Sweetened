@@ -54,7 +54,7 @@ sub postfilter {
       (\w+)\b             # the function name and a break
       (.*?) [ ]*          # anything else originally following the declaration
       \#__FUNC            # our magic token
-      ( [ ] \([^)]+\) )?  # optional parameter list
+      ( [ ] \([^)]*\) )?  # optional parameter list
       [ ]*                # trailing spaces
     }{func $1@{[ unescape_params( $3 ) ]}$2}xgm;
 
@@ -64,7 +64,7 @@ sub postfilter {
       (\w+)\n           # the method name and a newline
       \s* \{(.*?) [ ]*  # the opening brace on a newline followed orig comments
       \#__FUNC          # our magic token
-      ([ ]\([^)]+\))?   # optional parameter list
+      ([ ]\([^)]*\))?   # optional parameter list
       [ ]*              # trailing spaces
     }{func $1@{[ unescape_params( $3 ) ]} \{$2}gmx;
 
@@ -74,7 +74,7 @@ sub postfilter {
       (\w+)\b           # the method name and a word break
       (.*?)[ ]*         # anything else originally following the declaration
       \#__METHOD        # out magic token
-      ([ ]\([^)]+\))?   # option parameter list
+      ([ ]\([^)]*\))?   # option parameter list
       [ ]*              # trailing spaces
     }{method $1@{[ unescape_params( $3 ) ]}$2}gmx;
 
@@ -84,7 +84,7 @@ sub postfilter {
       (\w+)\n           # the method name and a newline
       \s* \{(.*?) [ ]*  # the opening brace on a newline followed orig comments
       \#__METHOD        # our magic token
-      ([ ]\([^)]+\))?   # optional parameter list
+      ([ ]\([^)]*\))?   # optional parameter list
       [ ]*              # trailing spaces
     }{method $1@{[ unescape_params( $3 ) ]} \{$2}gmx;
 
