@@ -1,5 +1,13 @@
 Changes for Perl::Tidy::Sweetend
 
+0.19 - Fri Apr 26 10:20:13 EDT 2013
+    Removes unnecessary (?^:) wrapper around paren regex. Bumps req to 5.10
+    The (?^ cluster is causing failures on pre-5.14 version of perl. It does
+    not appear to be necessary given our use of the regex. On the other
+    hand, the use of (?-1) was added in 5.10, so let's bump the perl
+    requirement back to 5.10 (it is hard to imagine anyone using modern
+    method syntax on a pre-5.10 perl).
+
 0.18 - Fri Apr 26 09:43:24 EDT 2013
     Fixes bug where balanced parens in the parameters list were not correctly
     formatted (RT#84868).

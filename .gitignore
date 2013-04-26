@@ -7,6 +7,7 @@ MANIFEST
 MANIFEST.bak
 Makefile.PL
 Makefile
+README
 _build/
 blib/
 Perl-Tidy-Sweetened*
