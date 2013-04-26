@@ -6,7 +6,7 @@ my $build = Module::Build->new(
     create_readme => 1,
     script_files  => [qw(script/perltidier)],
     requires      => {
-        'perl'           => '5.008',
+        'perl'           => '5.010', # Needed for RE{balanced}'s use of (?^)
         'Perl::Tidy'     => 0,
     },
     build_requires => {

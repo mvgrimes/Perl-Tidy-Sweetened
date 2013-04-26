@@ -2,6 +2,7 @@ package Perl::Tidy::Sweetened;
 
 # ABSTRACT: Tweaks to Perl::Tidy to support some syntactic sugar
 
+use 5.010;
 use strict;
 use warnings;
 use Perl::Tidy qw();
@@ -11,7 +12,8 @@ our $VERSION = '0.18';
 # Regex to match balanced parans. Reproduced from Regexp::Common to avoid
 # adding a non-core dependency.
 #   $RE{balanced}{-parens=>'()'};
-our $Clause = '(?^:((?:\((?:(?>[^\(\)]+)|(?-1))*\))))';
+# The (?-1) construct requires 5.010
+our $Clause = '(?:((?:\((?:(?>[^\(\)]+)|(?-1))*\))))';
 
 sub perltidy {
     return Perl::Tidy::perltidy(
