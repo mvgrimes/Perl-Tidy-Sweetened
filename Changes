@@ -1,5 +1,15 @@
 Changes for Perl::Tidy::Sweetend
 
+0.18 - Fri Apr 26 09:43:24 EDT 2013
+    Fixes bug where balanced parens in the parameters list were not correctly
+    formatted (RT#84868).
+
+    Minor tweaks:
+    - Adds Perl::Tidy::Sweet as an alternate module name.
+    - Changes hash bang for the perltidier script so it is rewritten at install.
+    - Drops minimum perl version to 5.8
+    - Adds travis-ci config file
+
 0.17 - Mon Feb 25 15:53:33 EST 2013
     Fixes RT#83511 - empty parameter list improperly rewritten
     - Addresses a bug, reported by Kent Fredric, where "method for() {" was

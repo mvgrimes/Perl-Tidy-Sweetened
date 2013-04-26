@@ -6,6 +6,7 @@
 \.svn/
 ^MANIFEST\.SKIP$
 .releaserc
+\.travis.yml
 \.git/
 ^lib/PPIx$
 ^.gitignore$

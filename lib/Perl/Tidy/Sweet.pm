@@ -6,6 +6,8 @@ use strict;
 use warnings;
 use base 'Perl::Tidy::Sweetened';
 
+our $VERSION = '0.18';
+
 1;
 
 __END__
@@ -18,7 +20,7 @@ Perl::Tidy::Sweet - Tweaks to Perl::Tidy to support some syntactic sugar
 
 =head1 VERSION
 
-version 0.17
+version 0.18
 
 =head1 DESCRIPTION
 
