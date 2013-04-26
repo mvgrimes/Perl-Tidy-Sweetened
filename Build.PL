@@ -6,8 +6,8 @@ my $build = Module::Build->new(
     create_readme => 1,
     script_files  => [qw(script/perltidier)],
     requires      => {
-        'perl'              => '5.010',
-        'Perl::Tidy' => 0,
+        'perl'           => '5.008',
+        'Perl::Tidy'     => 0,
     },
     build_requires => {
         'Test::Differences' => 0,
@@ -15,7 +15,7 @@ my $build = Module::Build->new(
         'Test::Most'        => 0,
     },
     configure_requires => { 'Module::Build' => '0.36', },
-    meta_merge => {
+    meta_merge         => {
         resources => {
             bugtracker =>
               'http://rt.cpan.org/NoAuth/Bugs.html?Dist=Perl-Tidy-Sweetened',
