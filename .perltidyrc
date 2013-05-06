@@ -1,0 +1,5 @@
+--nooutdent-long-lines
+--nooutdent-long-quotes
+--cuddled-else
+--stack-opening-tokens
+--stack-closing-tokens
