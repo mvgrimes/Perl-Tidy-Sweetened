@@ -8,6 +8,7 @@ my $build = Module::Build->new(
     requires      => {
         'perl'           => '5.010', # Needed for RE{balanced}'s use of (?^)
         'Perl::Tidy'     => 0,
+        'Carp'           => 0,
     },
     build_requires => {
         'Test::Differences' => 0,

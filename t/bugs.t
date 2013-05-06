@@ -40,15 +40,14 @@ method nm (Str $bar,                 | method nm (Str $bar,
 ==== RT#84868 - Multiple line signatures w/ comment =========================
 method nm (Str $bar,                   | method nm (Str $bar,
            Int $foo where { $_ > (0) } |            Int $foo where { $_ > (0) }
-          ) {   # Fun stuff            |           ) { # Fun stuff
+          ) {   # Fun stuff            |           ) {    # Fun stuff
 }                                      | }
 
-
 ==== RT#85076 - handle returns() with signature  ============================
-method open_file ( File :$file! ) returns(Bool) {  | method open_file ( File :$file! ) returns(Bool) {
-}                                                  | }
-
+method foo ( File :$file! ) returns(Bool) {  | method foo ( File :$file! ) returns(Bool) {
+}                                            | }
 
 ==== RT#85076 - handle returns() ============================================
-method can_compute_size returns(Bool) {            | method can_compute_size returns(Bool) {
-}                                                  | }
+method foo returns(Bool) {             | method foo returns(Bool) {
+}                                      | }
+

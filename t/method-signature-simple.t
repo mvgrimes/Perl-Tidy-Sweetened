@@ -38,3 +38,17 @@ func morning ( Str :$name,        | func morning ( Str :$name,
              ) {                  |              ) {
     say "Hi $name";               |     say "Hi $name";
 }                                 | }
+
+==== With trailing comments =================================================
+method name1{# Trailing comment       | method name1 {    # Trailing comment
+}                                     | }
+sub name2{  # Trailing comment        |
+}                                     | sub name2 {    # Trailing comment
+~                                     | }
+
+==== With attribs trailing comments =================================================
+method name1 :Attrib(Arg) {# comment  | method name1 : Attrib(Arg) {    # comment
+}                                     | }
+sub name2 :Attrib(Arg) {  # comment   |
+}                                     | sub name2 : Attrib(Arg) {    # comment
+~                                     | }

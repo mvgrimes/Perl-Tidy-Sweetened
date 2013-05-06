@@ -36,5 +36,13 @@ method name1 (Str $bar,                 | method name1 (Str $bar,
 ==== Multiple line signatures w/ comment  ===============================
 method name1 (Str $bar,                 | method name1 (Str $bar,
               Int $foo where { $_ > 0 } |               Int $foo where { $_ > 0 }
-             ) {   # Fun stuff          |              ) { # Fun stuff
+             ) {   # Fun stuff          |              ) {    # Fun stuff
 }                                       | }
+
+==== RT#85076 - handle returns() with signature  ============================
+method foo ( File :$file! ) returns(Bool) {  | method foo ( File :$file! ) returns(Bool) {
+}                                            | }
+
+==== RT#85076 - handle returns() ============================================
+method foo returns (Bool) {            | method foo returns (Bool) {
+}                                      | }

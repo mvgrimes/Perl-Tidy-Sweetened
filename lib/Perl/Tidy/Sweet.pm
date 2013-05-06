@@ -38,7 +38,8 @@ keywords (see the 2010-12-17 entry in the Perl::Tidy
 L<CHANGES|https://metacpan.org/source/SHANCOCK/Perl-Tidy-20120714/CHANGES>
 file). B<The resulting formatted code will leave the parameter lists untouched.>
 
-C<Perl::Tidy::Sweetened> attempts to support the syntax outlined in:
+C<Perl::Tidy::Sweetened> attempts to support the syntax outlined in the
+following modules, but most of the new syntax styles should work:
 
 =over
 
@@ -54,8 +55,13 @@ C<Perl::Tidy::Sweetened> attempts to support the syntax outlined in:
 
 L<Perl::Tidy>
 
+=head1 THANKS
+
 The idea and much of original code taken from Jonathan Swartz'
 L<blog|http://www.openswartz.com/2010/12/19/perltidy-and-method-happy-together/>.
+
+Kent Fredric refactored the code into the pluggable architecture. Very nice
+work, thank you.
 
 =head1 BUGS
 
