@@ -23,7 +23,7 @@ sub perltidy {
     );
 }
 
-sub prefilter {
+sub prefilter_func {
     $_ = $_[0];
 
     no warnings 'uninitialized';
@@ -36,6 +36,14 @@ sub prefilter {
       (.*?)             # anything else (ie, comments) ($3)
       $
      }{sub $1 $3 \#__FUNC @{[ escape_params( $2 ) ]}}gxm;
+
+    return $_;
+}
+
+sub prefilter_method {
+    $_ = $_[0];
+
+    no warnings 'uninitialized';
 
     # Convert method (signature) -> sub
     # encode multi-line parameter lists into one with escaped "\n"
@@ -50,7 +58,7 @@ sub prefilter {
     return $_;
 }
 
-sub postfilter {
+sub postfilter_func {
     $_ = $_[0];
 
     no warnings 'uninitialized';
@@ -75,6 +83,14 @@ sub postfilter {
       [ ]*              # trailing spaces
     }{func $1@{[ unescape_params( $3 ) ]} \{$2}gmx;
 
+    return $_;
+}
+
+sub postfilter_method {
+    $_ = $_[0];
+
+    no warnings 'uninitialized';
+
     # Convert back to method
     s{^\s*\K            # preserve leading whitespace
       sub \s+           # method was convert to sub
@@ -95,6 +111,21 @@ sub postfilter {
       [ ]*              # trailing spaces
     }{method $1@{[ unescape_params( $3 ) ]} \{$2}gmx;
 
+    return $_;
+
+}
+
+sub prefilter {
+    $_ = $_[0];
+    $_ = prefilter_func($_);
+    $_ = prefilter_method($_);
+    return $_;
+}
+
+sub postfilter {
+    $_ = $_[0];
+    $_ = postfilter_func($_);
+    $_ = postfilter_method($_);
     return $_;
 }
 
