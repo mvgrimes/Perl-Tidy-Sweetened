@@ -17,4 +17,6 @@ Changes.bak
 .DS_Store
 Session.vim
 t.pl
+t2.pl
+tmp/
 *.bak
