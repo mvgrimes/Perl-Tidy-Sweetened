@@ -1,14 +1,21 @@
+package Perl::Tidy::Sweetened::Keyword::SubSignature;
 
 use strict;
 use warnings;
- 
-package Perl::Tidy::Sweetened::Keyword::SubSignature;
 
 # Regex to match balanced parans. Reproduced from Regexp::Common to avoid
 # adding a non-core dependency.
 #   $RE{balanced}{-parens=>'()'};
 # The (?-1) construct requires 5.010
 our $Clause = '(?:((?:\((?:(?>[^\(\)]+)|(?-1))*\))))';
+
+sub new {
+    my ( $class, %args ) = @_;
+    die 'keyword not specified' if not exists $args{keyword};
+    die 'marker not specified'  if not exists $args{marker};
+    return bless {%args}, $class;
+}
+
 sub escape_params {
     my ($params) = @_;
     return $params unless defined $params;
@@ -23,41 +30,35 @@ sub unescape_params {
     $params =~ s{ \\n }{\n}xgm;
     return $params;
 }
-sub keyword { return $_[0]->{keyword} };
-sub marker  { return $_[0]->{marker}  };
 
-sub new {
-    my ( $class, %args ) = @_;
-    die 'keyword not specified' if not exists $args{keyword};
-    die 'marker not specified' if not exists $args{marker};
-    return bless { %args }, $class;
-}
+sub keyword { return $_[0]->{keyword} }
+sub marker  { return $_[0]->{marker} }
 
 sub emit_sub {
     my ( $self, $subname, $signature, $prelude ) = @_;
-    my $esignature = escape_params( $signature );
+    my $esignature = escape_params($signature);
     $esignature = '' if not defined $esignature;
-    return sprintf 'sub %s %s #__%s %s', 
-        $subname, 
-        $prelude, 
-        $self->marker, 
-        $esignature;
+    return sprintf 'sub %s %s #__%s %s',
+      $subname,
+      $prelude,
+      $self->marker,
+      $esignature;
 }
 
-sub emit_keyword { 
+sub emit_keyword {
     my ( $self, $subname, $signature, $padding, $prelude ) = @_;
-    my $esignature = unescape_params( $signature );
+    my $esignature = unescape_params($signature);
     $esignature = '' if not defined $esignature;
     return sprintf '%s %s%s%s%s',
-        $self->keyword,
-        $subname,
-        $esignature,
-        $padding,
-        $prelude;
+      $self->keyword,
+      $subname,
+      $esignature,
+      $padding,
+      $prelude;
 }
 
-sub prefilter { 
-    my ( $self, $code ) = @_ ;
+sub prefilter {
+    my ( $self, $code ) = @_;
     my $keyword = $self->keyword;
     my $marker  = $self->marker;
     $code =~ s{
@@ -77,6 +78,7 @@ sub postfilter {
     my ( $self, $code ) = @_;
     my $keyword = $self->keyword;
     my $marker  = $self->marker;
+
     # Convert back to method
     $code =~ s{
         ^\s*\K            # preserve leading whitespace

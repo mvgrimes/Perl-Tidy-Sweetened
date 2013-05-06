@@ -1,8 +1,12 @@
+package Perl::Tidy::Sweetened::Pluggable;
 
 use strict;
 use warnings;
 
-package Perl::Tidy::Sweetened::Pluggable;
+sub new {
+    my ( $class, %args ) = @_;
+    return bless {%args}, $class;
+}
 
 sub filters { return ( $_[0]->{filters} ||= [] ) }
 
@@ -11,15 +15,10 @@ sub add_filter {
     push @{ $self->filters }, @_;
 }
 
-sub new {
-    my ( $class, %args ) = @_;
-    return bless { %args }, $class;
-}
-
 sub prefilter {
     my ( $self, $code ) = @_;
-    for my $filter ( @{ $self->filters } ){
-        $code = $filter->prefilter( $code );
+    for my $filter ( @{ $self->filters } ) {
+        $code = $filter->prefilter($code);
     }
     return $code;
 }
@@ -27,7 +26,7 @@ sub prefilter {
 sub postfilter {
     my ( $self, $code ) = @_;
     for my $filter ( @{ $self->filters } ) {
-        $code = $filter->postfilter( $code );
+        $code = $filter->postfilter($code);
     }
     return $code;
 }

@@ -13,23 +13,17 @@ use Perl::Tidy::Sweetened::Keyword::SubSignature;
 use Perl::Tidy::Sweetened::Pluggable;
 
 our $plugins = Perl::Tidy::Sweetened::Pluggable->new();
+
 $plugins->add_filter(
     Perl::Tidy::Sweetened::Keyword::SubSignature->new(
         keyword => 'func',
         marker  => 'FUNC',
-    )
-);
+    ) );
 $plugins->add_filter(
     Perl::Tidy::Sweetened::Keyword::SubSignature->new(
         keyword => 'method',
         marker  => 'METHOD',
-    )
-);
-
-sub add_filter {
-    shift;
-    $plugins->add_filter(@_);
-}
+    ) );
 
 sub perltidy {
     return Perl::Tidy::perltidy(
