@@ -39,8 +39,8 @@ sub emit_keyword {
     my ( $self, $subname, $padding, $prelude, $id ) = @_;
 
     # Get the signature and returns() from store
-    my $signature = $self->{store}->{$id}->{signature};
-    my $returns   = $self->{store}->{$id}->{returns};
+    my $signature = $self->{store}->{$id}->{signature} // '';
+    my $returns   = $self->{store}->{$id}->{returns}   // '';
     $signature = ' ' . $signature if length $signature;
     $returns   = ' ' . $returns   if length $returns;
 
