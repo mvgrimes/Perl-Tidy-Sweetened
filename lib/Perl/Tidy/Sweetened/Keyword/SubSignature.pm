@@ -13,12 +13,13 @@ our $VERSION = '0.20';
 # adding a non-core dependency.
 #   $RE{balanced}{-parens=>'()'};
 # The (?-1) construct requires 5.010
-our $Clause = '(?:((?:\((?:(?>[^\(\)]+)|(?-1))*\))))';
+our $Paren = '(?:((?:\((?:(?>[^\(\)]+)|(?-1))*\))))';
 
 sub new {
     my ( $class, %args ) = @_;
     croak 'keyword not specified' if not exists $args{keyword};
     croak 'marker not specified'  if not exists $args{marker};
+    $args{clauses} = [] unless exists $args{clauses};
     return bless {%args}, $class;
 }
 
@@ -26,32 +27,51 @@ sub keyword { return $_[0]->{keyword} }
 sub marker  { return $_[0]->{marker} }
 
 sub emit_sub {
-    my ( $self, $subname, $signature, $prelude, $returns ) = @_;
+    my ( $self, $subname, $brace, $clauses ) = @_;
+    use DDP;
+    p $clauses;
 
     # Store the signature and returns() for later use
     my $id = $self->{counter}++;
-    $self->{store}->{$id} = { signature => $signature, returns => $returns };
 
-    return sprintf 'sub %s %s #__%s %s', $subname, $prelude, $self->marker, $id;
+    # $self->{store}->{$id} = { signature => $signature, returns => $returns };
+
+    $self->{store}->{$id} = $clauses;
+
+    return sprintf 'sub %s %s #__%s %s', $subname, $brace, $self->marker, $id;
 }
 
 sub emit_keyword {
-    my ( $self, $subname, $padding, $prelude, $id ) = @_;
+    my ( $self, $subname, $brace, $id ) = @_;
 
     # Get the signature and returns() from store
-    my $signature = $self->{store}->{$id}->{signature} // '';
-    my $returns   = $self->{store}->{$id}->{returns}   // '';
-    $signature = ' ' . $signature if length $signature;
-    $returns   = ' ' . $returns   if length $returns;
+    my $clauses = $self->{store}->{$id};
 
-    return sprintf '%s %s%s%s%s%s',
-      $self->keyword,
-      $subname,
-      $signature,
-      $returns,
-      $padding,
-      $prelude;
+    # Combine clauses (parameter list, returns(), etc) into a string separate
+    # each with a space and lead with a space if there are any
+    my $clause = join ' ', grep { length $_ } @$clauses;
+    $clause = ' ' . $clause if length $clause;
+
+    return sprintf '%s %s%s%s', $self->keyword, $subname, $clause, $brace;
 }
+
+sub clauses {
+    my $self = shift;
+
+    # Create a regex (as a string) for all the clauses (ie, parameter list,
+    # returns(), etc).
+    my $clause_re = '';
+    my $i         = 0;
+    for my $clause ( @{ $self->{clauses} } ) {
+        $clause =~ s{PAREN}{$Paren}g;
+
+        $clause_re .= "(?<clause_$i>  $clause ) \\s* \n";
+        $i++;
+    }
+
+    return $clause_re;
+}
+$|++;
 
 sub prefilter {
     my ( $self, $code ) = @_;
@@ -61,13 +81,18 @@ sub prefilter {
         ^\s*\K                    # okay to have leading whitespace (preserve)
         $keyword             \s+  # the "func/method" keyword
         (?<subname> \w+)     \s*  # the function name
-        (?<params> $Clause)? \s*  # optional parameter list (multi-line ok)
-        (?<returns> returns \s* $Clause )?
-                                  # optional returns(...)
-        (?<prelude> .*?)          # anything else (ie, comments) including brace
+        @{[ $self->clauses ]}     # any clauses defined (ie, a parameter list)
+        (?<brace> .*?)            # anything else (ie, comments) including brace
         $
     }{
-        $self->emit_sub( $+{subname}, $+{params}, $+{prelude}, $+{returns} )
+        my $i = 0;
+        my $clauses = [];
+        while( exists $+{"clause_$i"} ){
+            warn "# clause_$i: " . $+{"clause_$i"} . "\n";
+            push @$clauses, $+{"clause_$i"};
+            $i++;
+        }
+        $self->emit_sub( $+{subname}, $+{brace}, $clauses )
     }egmx;
 
     return $code;
@@ -82,12 +107,12 @@ sub postfilter {
         ^\s*\K                 # preserve leading whitespace
         sub               \s+  # keyword was convert to sub
         (?<subname> \w+ ) \b   # the method name and a word break
-        (?<prelude> .*? ) \s*  # anything orig following the declaration
+        (?<brace> .*? )   \s*  # anything orig following the declaration
         \#__$marker \s+        # our magic token
         (?<id> \d+)            # our sub identifier
         [ ]*                   # trailing spaces (not all whitespace)
     }{
-        $self->emit_keyword( $+{subname}, '', $+{prelude}, $+{id} );
+        $self->emit_keyword( $+{subname}, $+{brace}, $+{id} );
     }egmx;
 
     # Check to see if tidy turned it into "sub name\n{ #..."
@@ -95,12 +120,12 @@ sub postfilter {
         ^\s*\K                   # preserve leading whitespace
         sub                 \s+  # method was converted to sub
         (?<subname> \w+)\n  \s*  # the method name and a newline
-        \{ (?<prelude> .*?) [ ]* # opening brace on newline followed orig comments
+        (?<brace> \{ .*?)   [ ]* # opening brace on newline followed orig comments
         \#__$marker         \s+  # our magic token
         (?<id> \d+)              # our sub identifier
         [ ]*                     # trailing spaces (not all whitespace)
     }{
-        $self->emit_keyword( $+{subname}, ' \{', $+{prelude}, $+{id} );
+        $self->emit_keyword( $+{subname}, $+{brace}, $+{id} );
     }egmx;
 
     return $code;
@@ -128,12 +153,57 @@ version 0.20
         Perl::Tidy::Sweetened::Keyword::SubSignature->new(
             keyword => 'method',
             marker  => 'METHOD',
+            clauses => [ 'PAREN?', '(returns \s* PAREN)?' ],
         ) );
 
 =head1 DESCRIPTION
 
 This is a Perl::Tidy::Sweetened filter which enables the definition of
-arbitrary keywords for subroutines.
+arbitrary keywords for subroutines with any number of potential signature
+definitions. New accepts:
+
+=over 4
+
+=item keyword
+
+    keyword => 'method'
+
+Declares a new keyword (in this example the "method" keyword).
+
+=item marker
+
+    marker => 'METHOD'
+
+Provides a text marker to be used to flag the new keywords during
+C<prefilter>. The source code will be filtered prior to formatting by
+Perl::Tidy such that:
+
+    method foo {
+    }
+
+is turned into:
+
+    sub foo { # __METHOD 1
+    }
+
+=item clauses
+
+    clauses => [ 'PAREN?' ]
+
+Provides a list of strings which will be turned into a regex to capture
+additional clauses. The regex will include the 'xm' flags (so be sure to escape
+spaces).  The clause can be marked optional with '?'. The special text "PAREN"
+can be used to capture a balanced parenthetical.
+
+This example will capture a parameter list enclosed by parenthesis, ie:
+
+    method foo (Int $i) {
+    }
+
+No formatting is done on the clauses at this time. The order of declaration
+is significant.
+
+=back
 
 =head1 THANKS
 

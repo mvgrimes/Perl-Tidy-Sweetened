@@ -14,15 +14,24 @@ use Perl::Tidy::Sweetened::Pluggable;
 
 our $plugins = Perl::Tidy::Sweetened::Pluggable->new();
 
+# Create a subroutine filter for:
+#    func foo (Int $i) returns (Bool) {}
+# where both the parameter list and the returns type are optional
 $plugins->add_filter(
     Perl::Tidy::Sweetened::Keyword::SubSignature->new(
         keyword => 'func',
         marker  => 'FUNC',
+        clauses => [ 'PAREN?', '(returns \s* PAREN)?' ],
     ) );
+
+# Create a subroutine filter for:
+#    method foo (Int $i) returns (Bool) {}
+# where both the parameter list and the returns type are optional
 $plugins->add_filter(
     Perl::Tidy::Sweetened::Keyword::SubSignature->new(
         keyword => 'method',
         marker  => 'METHOD',
+        clauses => [ 'PAREN?', '(returns \s* PAREN)?' ],
     ) );
 
 sub perltidy {
