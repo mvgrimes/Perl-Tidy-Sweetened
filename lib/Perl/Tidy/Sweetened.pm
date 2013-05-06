@@ -7,142 +7,36 @@ use strict;
 use warnings;
 use Perl::Tidy qw();
 
-our $VERSION = '0.19';
+our $VERSION = '0.20';
 
-# Regex to match balanced parans. Reproduced from Regexp::Common to avoid
-# adding a non-core dependency.
-#   $RE{balanced}{-parens=>'()'};
-# The (?-1) construct requires 5.010
-our $Clause = '(?:((?:\((?:(?>[^\(\)]+)|(?-1))*\))))';
+use Perl::Tidy::Sweetened::Keyword::SubSignature;
+use Perl::Tidy::Sweetened::Pluggable;
+
+our $plugins = Perl::Tidy::Sweetened::Pluggable->new();
+$plugins->add_filter(
+    Perl::Tidy::Sweetened::Keyword::SubSignature->new(
+        keyword => 'func',
+        marker  => 'FUNC',
+    )
+);
+$plugins->add_filter(
+    Perl::Tidy::Sweetened::Keyword::SubSignature->new(
+        keyword => 'method',
+        marker  => 'METHOD',
+    )
+);
+
+sub add_filter {
+    shift;
+    $plugins->add_filter(@_);
+}
 
 sub perltidy {
     return Perl::Tidy::perltidy(
-        prefilter  => \&prefilter,
-        postfilter => \&postfilter,
+        prefilter  => sub { $plugins->prefilter( $_[0] ) },
+        postfilter => sub { $plugins->postfilter( $_[0] ) },
         @_
     );
-}
-
-sub prefilter_func {
-    $_ = $_[0];
-
-    no warnings 'uninitialized';
-
-    # Convert func xxxx (signature) -> sub
-    s{^\s*\K            # okay to have leading whitespace (preserve)
-      func   \s+        # the "func" keyword
-      (\w+)  \s*        # the function name ($1)
-      (?:$Clause)?      # optional parameter list (multi-line ok) ($2 in Clause)
-      (.*?)             # anything else (ie, comments) ($3)
-      $
-     }{sub $1 $3 \#__FUNC @{[ escape_params( $2 ) ]}}gxm;
-
-    return $_;
-}
-
-sub prefilter_method {
-    $_ = $_[0];
-
-    no warnings 'uninitialized';
-
-    # Convert method (signature) -> sub
-    # encode multi-line parameter lists into one with escaped "\n"
-    s{^\s*\K            # ok to have leading whitespace (preserve)
-      method \s+        # the "method" keyword
-      (\w+)  \s*        # the method name ($1)
-      (?:$Clause)?      # optional parameter list (multi-line ok) ($2 in Clause)
-      (.*?)             # anything else (ie, comments) ($3)
-      $
-    }{sub $1 $3 \#__METHOD @{[ escape_params( $2 ) ]}}xgm;
-
-    return $_;
-}
-
-sub postfilter_func {
-    $_ = $_[0];
-
-    no warnings 'uninitialized';
-
-    # Convert back to func
-    s{^\s*\K              # preserve leading whitespace
-      sub \s+             # func was converted to sub
-      (\w+)\b             # the function name and a break ($1)
-      (.*?) [ ]*          # anything originally following the declaration ($2)
-      \#__FUNC            # our magic token
-      (\s $Clause)?       # optional parameter list ($3 & $4 in Clause)
-      [ ]*                # trailing spaces
-    }{func $1@{[ unescape_params( $3 ) ]}$2}xgm;
-
-    # Check to see if tidy turned it into "sub name\n{ #..."
-    s{^\s*\K            # preserve leading whitespace
-      sub \s+           # method was converted to sub
-      (\w+)\n           # the method name and a newline ($1)
-      \s* \{(.*?) [ ]*  # opening brace on a newline followed orig comments ($2)
-      \#__FUNC          # our magic token
-      (\s $Clause)?     # optional parameter list ($3 & $4 in Clause)
-      [ ]*              # trailing spaces
-    }{func $1@{[ unescape_params( $3 ) ]} \{$2}gmx;
-
-    return $_;
-}
-
-sub postfilter_method {
-    $_ = $_[0];
-
-    no warnings 'uninitialized';
-
-    # Convert back to method
-    s{^\s*\K            # preserve leading whitespace
-      sub \s+           # method was convert to sub
-      (\w+)\b           # the method name and a word break ($1)
-      (.*?)[ ]*         # anything originally following the declaration ($2)
-      \#__METHOD        # out magic token
-      (\s $Clause)?     # option parameter list ($3 & $4 in Clause)
-      [ ]*              # trailing spaces
-    }{method $1@{[ unescape_params( $3 ) ]}$2}gmx;
-
-    # Check to see if tidy turned it into "sub name\n{ #..."
-    s{^\s*\K            # preserve leading whitespace
-      sub \s+           # method was converted to sub
-      (\w+)\n           # the method name and a newline ($1)
-      \s* \{(.*?) [ ]*  # opening brace on newline followed orig comments ($2)
-      \#__METHOD        # our magic token
-      (\s $Clause)?     # optional parameter list ($3 & $4 in Clause)
-      [ ]*              # trailing spaces
-    }{method $1@{[ unescape_params( $3 ) ]} \{$2}gmx;
-
-    return $_;
-
-}
-
-sub prefilter {
-    $_ = $_[0];
-    $_ = prefilter_func($_);
-    $_ = prefilter_method($_);
-    return $_;
-}
-
-sub postfilter {
-    $_ = $_[0];
-    $_ = postfilter_func($_);
-    $_ = postfilter_method($_);
-    return $_;
-}
-
-# Convert any newline into \n
-sub escape_params {
-    my ($params) = @_;
-    return $params unless defined $params;
-    $params =~ s{ \n }{\\n}xgm;
-    return $params;
-}
-
-# Convert any \n into newlines
-sub unescape_params {
-    my ($params) = @_;
-    return $params unless defined $params;
-    $params =~ s{ \\n }{\n}xgm;
-    return $params;
 }
 
 1;
