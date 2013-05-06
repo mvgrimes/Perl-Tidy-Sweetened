@@ -1,5 +1,15 @@
 Changes for Perl::Tidy::Sweetend
 
+0.20 - Mon May  6 11:16:28 EDT 2013
+    Significant refactoring (by Kent Fredric++) to make the filters pluggable.
+
+    - Fixes RT#85076 bug (support for returns() syntax)
+    - Switches to named captures to make the regex more clear (ok, since we
+      already require 5.010 for the balanced paranes)
+    - Stores signature (and any returns() declaration) externally rather
+      than in the code via comments. Nice idea Kent++.
+    - Adds a .perltidyrc file so all contributers style will be consistent
+
 0.19 - Fri Apr 26 10:20:13 EDT 2013
     Removes unnecessary (?^:) wrapper around paren regex. Bumps req to 5.10
     The (?^ cluster is causing failures on pre-5.14 version of perl. It does
