@@ -28,8 +28,6 @@ sub marker  { return $_[0]->{marker} }
 
 sub emit_sub {
     my ( $self, $subname, $brace, $clauses ) = @_;
-    use DDP;
-    p $clauses;
 
     # Store the signature and returns() for later use
     my $id = $self->{counter}++;
