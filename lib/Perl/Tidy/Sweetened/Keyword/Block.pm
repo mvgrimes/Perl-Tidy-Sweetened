@@ -1,11 +1,12 @@
-package Perl::Tidy::Sweetened::Keyword::SubSignature;
+package Perl::Tidy::Sweetened::Keyword::Block;
 
-# ABSTRACT: Perl::Tidy::Sweetened filter plugin to define new subroutine keywords
+# ABSTRACT: Perl::Tidy::Sweetened filter plugin to define new subroutine and class keywords
 
 use 5.010;    # Needed for balanced parens matching with qr/(?-1)/
 use strict;
 use warnings;
 use Carp;
+$|++;
 
 our $VERSION = '0.20';
 
@@ -17,26 +18,26 @@ our $Paren = '(?:((?:\((?:(?>[^\(\)]+)|(?-1))*\))))';
 
 sub new {
     my ( $class, %args ) = @_;
-    croak 'keyword not specified' if not exists $args{keyword};
-    croak 'marker not specified'  if not exists $args{marker};
+    croak 'keyword not specified'     if not exists $args{keyword};
+    croak 'marker not specified'      if not exists $args{marker};
+    croak 'replacement not specified' if not exists $args{replacement};
     $args{clauses} = [] unless exists $args{clauses};
     return bless {%args}, $class;
 }
 
-sub keyword { return $_[0]->{keyword} }
-sub marker  { return $_[0]->{marker} }
+sub keyword     { return $_[0]->{keyword} }
+sub marker      { return $_[0]->{marker} }
+sub replacement { return $_[0]->{replacement} }
 
-sub emit_sub {
+sub emit_placeholder {
     my ( $self, $subname, $brace, $clauses ) = @_;
 
     # Store the signature and returns() for later use
     my $id = $self->{counter}++;
-
-    # $self->{store}->{$id} = { signature => $signature, returns => $returns };
-
     $self->{store}->{$id} = $clauses;
 
-    return sprintf 'sub %s %s #__%s %s', $subname, $brace, $self->marker, $id;
+    return sprintf '%s %s %s #__%s %s',
+      $self->replacement, $subname, $brace, $self->marker, $id;
 }
 
 sub emit_keyword {
@@ -69,7 +70,6 @@ sub clauses {
 
     return $clause_re;
 }
-$|++;
 
 sub prefilter {
     my ( $self, $code ) = @_;
@@ -86,11 +86,11 @@ sub prefilter {
         my $i = 0;
         my $clauses = [];
         while( exists $+{"clause_$i"} ){
-            warn "# clause_$i: " . $+{"clause_$i"} . "\n";
+            ## warn "# clause_$i: " . $+{"clause_$i"} . "\n";
             push @$clauses, $+{"clause_$i"};
             $i++;
         }
-        $self->emit_sub( $+{subname}, $+{brace}, $clauses )
+        $self->emit_placeholder( $+{subname}, $+{brace}, $clauses )
     }egmx;
 
     return $code;
@@ -98,12 +98,13 @@ sub prefilter {
 
 sub postfilter {
     my ( $self, $code ) = @_;
-    my $marker = $self->marker;
+    my $marker      = $self->marker;
+    my $replacement = $self->replacement;
 
     # Convert back to method
     $code =~ s{
         ^\s*\K                 # preserve leading whitespace
-        sub               \s+  # keyword was convert to sub
+        $replacement      \s+  # keyword was convert to sub
         (?<subname> \w+ ) \b   # the method name and a word break
         (?<brace> .*? )   \s*  # anything orig following the declaration
         \#__$marker \s+        # our magic token
@@ -116,7 +117,7 @@ sub postfilter {
     # Check to see if tidy turned it into "sub name\n{ #..."
     $code =~ s{
         ^\s*\K                   # preserve leading whitespace
-        sub                 \s+  # method was converted to sub
+        $replacement        \s+  # method was converted to sub
         (?<subname> \w+)\n  \s*  # the method name and a newline
         (?<brace> \{ .*?)   [ ]* # opening brace on newline followed orig comments
         \#__$marker         \s+  # our magic token
@@ -148,10 +149,11 @@ version 0.20
     our $plugins = Perl::Tidy::Sweetened::Pluggable->new();
 
     $plugins->add_filter(
-        Perl::Tidy::Sweetened::Keyword::SubSignature->new(
-            keyword => 'method',
-            marker  => 'METHOD',
-            clauses => [ 'PAREN?', '(returns \s* PAREN)?' ],
+        Perl::Tidy::Sweetened::Keyword::Block->new(
+            keyword    => 'method',
+            marker     => 'METHOD',
+            replacment => 'sub',
+            clauses    => [ 'PAREN?', '(returns \s* PAREN)?' ],
         ) );
 
 =head1 DESCRIPTION
@@ -183,6 +185,12 @@ is turned into:
 
     sub foo { # __METHOD 1
     }
+
+=item replacement
+
+    replacement => 'sub'
+
+Will convert the keyword to a C<sub> as shown above.
 
 =item clauses
 

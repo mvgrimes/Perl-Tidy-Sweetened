@@ -24,11 +24,19 @@ sub prefilter {
     for my $filter ( @{ $self->filters } ) {
         $code = $filter->prefilter($code);
     }
+
+    # warn "After prefilter, before tidy\n";
+    # warn $code;
+
     return $code;
 }
 
 sub postfilter {
     my ( $self, $code ) = @_;
+
+    # warn "After tidy, before postfilter\n";
+    # warn $code;
+
     for my $filter ( @{ $self->filters } ) {
         $code = $filter->postfilter($code);
     }

@@ -43,6 +43,8 @@ following modules, but most of the new syntax styles should work:
 
 =over
 
+=item * p5-mop
+
 =item * Method::Signature::Simple
 
 =item * MooseX::Method::Signatures

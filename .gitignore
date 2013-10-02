@@ -17,6 +17,9 @@ Changes.bak
 .DS_Store
 Session.vim
 t.pl
-t2.pl
+t[0-9]*.pl
 tmp/
 *.bak
+.local-v*
+perltidy.LOG
+perltidy.ERR

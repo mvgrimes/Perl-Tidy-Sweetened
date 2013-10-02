@@ -9,8 +9,9 @@ use Perl::Tidy qw();
 
 our $VERSION = '0.20';
 
-use Perl::Tidy::Sweetened::Keyword::SubSignature;
 use Perl::Tidy::Sweetened::Pluggable;
+use Perl::Tidy::Sweetened::Keyword::Block;
+use Perl::Tidy::Sweetened::Variable::Twigils;
 
 our $plugins = Perl::Tidy::Sweetened::Pluggable->new();
 
@@ -18,20 +19,42 @@ our $plugins = Perl::Tidy::Sweetened::Pluggable->new();
 #    func foo (Int $i) returns (Bool) {}
 # where both the parameter list and the returns type are optional
 $plugins->add_filter(
-    Perl::Tidy::Sweetened::Keyword::SubSignature->new(
-        keyword => 'func',
-        marker  => 'FUNC',
-        clauses => [ 'PAREN?', '(returns \s* PAREN)?' ],
+    Perl::Tidy::Sweetened::Keyword::Block->new(
+        keyword     => 'func',
+        marker      => 'FUNC',
+        replacement => 'sub',
+        clauses     => [ 'PAREN?', '(returns \s* PAREN)?' ],
     ) );
 
 # Create a subroutine filter for:
 #    method foo (Int $i) returns (Bool) {}
 # where both the parameter list and the returns type are optional
 $plugins->add_filter(
-    Perl::Tidy::Sweetened::Keyword::SubSignature->new(
-        keyword => 'method',
-        marker  => 'METHOD',
-        clauses => [ 'PAREN?', '(returns \s* PAREN)?' ],
+    Perl::Tidy::Sweetened::Keyword::Block->new(
+        keyword     => 'method',
+        marker      => 'METHOD',
+        replacement => 'sub',
+        clauses     => [ 'PAREN?', '(returns \s* PAREN)?' ],
+    ) );
+
+# Create a subroutine filter for:
+#    class Foo extends Bar {
+#    class Foo with Bar, Baz {
+# where both the extends and with are optional
+$plugins->add_filter(
+    Perl::Tidy::Sweetened::Keyword::Block->new(
+        keyword     => 'class',
+        marker      => 'CLASS',
+        replacement => 'package',
+        clauses     => [ '(with(\s+\w+)*)?', '(extends \s+ \w+)?' ],
+    ) );
+
+# Create a twigil filter for:
+#    $!variable_name
+$plugins->add_filter(
+    Perl::Tidy::Sweetened::Variable::Twigils->new(
+        twigil => '$!',
+        marker => 'TWG_BANG',
     ) );
 
 sub perltidy {
@@ -76,6 +99,8 @@ C<Perl::Tidy::Sweetened> attempts to support the syntax outlined in the
 following modules, but most of the new syntax styles should work:
 
 =over
+
+=item * p5-mop
 
 =item * Method::Signature::Simple
 
