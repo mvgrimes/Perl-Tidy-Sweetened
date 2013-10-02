@@ -1,5 +1,14 @@
 Changes for Perl::Tidy::Sweetend
 
+0.21 - Wed Oct  2 12:45:51 EDT 2013
+    Adds support for the new p5-mop syntax
+    - Introduces a plugin to support twigils
+    - Generalizes the SubSignature plugin to work with keywords that start
+      blocks
+    Further abstracts the creation of new subroutine filters
+    Builds on Kent Fredric's plugin abstraction to make the parameter list,
+    return type, and any other clause definable.
+
 0.20 - Mon May  6 11:16:28 EDT 2013
     Significant refactoring (by Kent Fredric++) to make the filters pluggable.
 

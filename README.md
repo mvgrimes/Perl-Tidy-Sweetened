@@ -4,7 +4,7 @@ Perl::Tidy::Sweetened - Tweaks to Perl::Tidy to support some syntactic sugar
 
 # VERSION
 
-version 0.20
+version 0.21
 
 # DESCRIPTION
 
@@ -25,6 +25,7 @@ file). __The resulting formatted code will leave the parameter lists untouched._
 `Perl::Tidy::Sweetened` attempts to support the syntax outlined in the
 following modules, but most of the new syntax styles should work:
 
+- p5-mop
 - Method::Signature::Simple
 - MooseX::Method::Signatures
 - MooseX::Declare
