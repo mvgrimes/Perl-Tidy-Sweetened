@@ -1,5 +1,8 @@
 Changes for Perl::Tidy::Sweetend
 
+0.22 - Fri Oct  4 08:11:50 EDT 2013
+    Removes extraneous files from release
+
 0.21 - Wed Oct  2 12:45:51 EDT 2013
     Adds support for the new p5-mop syntax
     - Introduces a plugin to support twigils

@@ -8,7 +8,7 @@ use warnings;
 use Carp;
 $|++;
 
-our $VERSION = '0.21';
+our $VERSION = '0.22';
 
 # Regex to match balanced parans. Reproduced from Regexp::Common to avoid
 # adding a non-core dependency.
@@ -138,11 +138,11 @@ __END__
 
 =head1 NAME
 
-Perl::Tidy::Sweetened::Keyword::SubSignature - Perl::Tidy::Sweetened filter plugin to define new subroutine keywords
+Perl::Tidy::Sweetened::Keyword::Block - Perl::Tidy::Sweetened filter plugin to define new subroutine and class keywords
 
 =head1 VERSION
 
-version 0.21
+version 0.22
 
 =head1 SYNOPSIS
 

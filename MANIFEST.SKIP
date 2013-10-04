@@ -19,3 +19,9 @@ TODO
 ^Session.vim$
 ^t.pl$
 ^weaver.ini$
+\.local-v*
+^tmp/
+^t\d*\.pl
+^perltidy\.LOG$
+^perltidy\.ERR$
+^README\.md$

@@ -8,7 +8,7 @@ use warnings;
 use Carp;
 $|++;
 
-our $VERSION = '0.21';
+our $VERSION = '0.22';
 
 sub new {
     my ( $class, %args ) = @_;
@@ -92,11 +92,11 @@ __END__
 
 =head1 NAME
 
-Perl::Tidy::Sweetened::Keyword::SubSignature - Perl::Tidy::Sweetened filter plugin to define new subroutine keywords
+Perl::Tidy::Sweetened::Variable::Twigils - Perl::Tidy::Sweetened filter plugin to handle twigls
 
 =head1 VERSION
 
-version 0.21
+version 0.22
 
 =head1 SYNOPSIS
 
