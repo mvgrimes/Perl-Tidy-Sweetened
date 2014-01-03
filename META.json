@@ -1,0 +1,72 @@
+{
+   "abstract" : "Tweaks to Perl::Tidy to support some syntactic sugar",
+   "author" : [
+      "Mark Grimes, E<lt>mgrimes@cpan.orgE<gt>"
+   ],
+   "dynamic_config" : 1,
+   "generated_by" : "Module::Build version 0.4007, CPAN::Meta::Converter version 2.120351",
+   "license" : [
+      "perl_5"
+   ],
+   "meta-spec" : {
+      "url" : "http://search.cpan.org/perldoc?CPAN::Meta::Spec",
+      "version" : "2"
+   },
+   "name" : "Perl-Tidy-Sweetened",
+   "prereqs" : {
+      "build" : {
+         "requires" : {
+            "Test::Differences" : "0",
+            "Test::More" : "0.87",
+            "Test::Most" : "0"
+         }
+      },
+      "configure" : {
+         "requires" : {
+            "Module::Build" : "0.36"
+         }
+      },
+      "runtime" : {
+         "requires" : {
+            "Carp" : "0",
+            "Perl::Tidy" : "0",
+            "perl" : "5.010"
+         }
+      }
+   },
+   "provides" : {
+      "Perl::Tidy::Sweet" : {
+         "file" : "lib/Perl/Tidy/Sweet.pm",
+         "version" : "0.23"
+      },
+      "Perl::Tidy::Sweetened" : {
+         "file" : "lib/Perl/Tidy/Sweetened.pm",
+         "version" : "0.23"
+      },
+      "Perl::Tidy::Sweetened::Keyword::Block" : {
+         "file" : "lib/Perl/Tidy/Sweetened/Keyword/Block.pm",
+         "version" : "0.23"
+      },
+      "Perl::Tidy::Sweetened::Pluggable" : {
+         "file" : "lib/Perl/Tidy/Sweetened/Pluggable.pm",
+         "version" : "0.23"
+      },
+      "Perl::Tidy::Sweetened::Variable::Twigils" : {
+         "file" : "lib/Perl/Tidy/Sweetened/Variable/Twigils.pm",
+         "version" : "0.23"
+      }
+   },
+   "release_status" : "stable",
+   "resources" : {
+      "bugtracker" : {
+         "web" : "http://rt.cpan.org/NoAuth/Bugs.html?Dist=Perl-Tidy-Sweetened"
+      },
+      "license" : [
+         "http://dev.perl.org/licenses/"
+      ],
+      "repository" : {
+         "url" : "http://github.com/mvgrimes/perl-tidy-sweetened"
+      }
+   },
+   "version" : "0.23"
+}
