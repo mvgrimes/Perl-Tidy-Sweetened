@@ -17,3 +17,7 @@ class BankAccount {                     | class BankAccount {
 }                                       |     }
 ~                                       | }
 
+==== Multipart class ========================================
+class A::Point {               | class A::Point {
+    has $!x  is  ro  = 1 ;     |     has $!x is ro = 1;
+}                              | }

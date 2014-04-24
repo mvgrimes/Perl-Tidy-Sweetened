@@ -51,3 +51,12 @@ method foo ( File :$file! ) returns(Bool) {  | method foo ( File :$file! ) retur
 method foo returns(Bool) {             | method foo returns(Bool) {
 }                                      | }
 
+==== RT#94633 - class WORD::WORD {} ========================================
+class WORD::WORD {            | class WORD::WORD {
+}                             | }
+                              |
+class WORD {                  | class WORD {
+}                             | }
+                              |
+sub mysub:ATTRIBUTE {         | sub mysub : ATTRIBUTE {
+}                             | }
