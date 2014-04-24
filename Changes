@@ -1,7 +1,8 @@
 Changes for Perl::Tidy::Sweetend
 
-0.23 - Fri Jan  3 14:26:38 EST 2014
-    Preps for release
+0.24 - Thu Apr 24 07:27:09 EDT 2014
+    Fixes RT#94633: class WORD::WORD was not parsed correctly.
+    Thanks to Kent Fredric for the bug report.
 
 0.23 - Fri Jan  3 14:25:22 EST 2014
     Re-uploads to try to fix metacpan.org indexing issue.
