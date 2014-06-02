@@ -26,7 +26,7 @@ file). __The resulting formatted code will leave the parameter lists untouched._
 following modules, but most of the new syntax styles should work:
 
 - p5-mop
-- Method::Signature::Simple
+- Method::Signatures::Simple
 - MooseX::Method::Signatures
 - MooseX::Declare
 

@@ -45,7 +45,7 @@ following modules, but most of the new syntax styles should work:
 
 =item * p5-mop
 
-=item * Method::Signature::Simple
+=item * Method::Signatures::Simple
 
 =item * MooseX::Method::Signatures
 
