@@ -1,5 +1,10 @@
 Changes for Perl::Tidy::Sweetend
 
+0.25 - Fri Jun  6 10:38:57 EDT 2014
+    Fixes (GH#3): Typo in documentation. Method::Signatures::Simple instead of
+    Method::Signature::Simple.
+    Thanks to aggrolite for the bug report and patch.
+
 0.24 - Thu Apr 24 07:27:09 EDT 2014
     Fixes RT#94633: class WORD::WORD was not parsed correctly.
     Thanks to Kent Fredric for the bug report.
