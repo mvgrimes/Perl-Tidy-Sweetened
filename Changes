@@ -1,5 +1,13 @@
 Changes for Perl::Tidy::Sweetend
 
+0.26 - Mon Aug  4 03:53:40 EDT 2014
+    Deals with MooseX::Delcare's "is" attribute for classes (GH#5)
+    Thanks to stratust for the bug report
+
+    Adds test to ensure we work with perl 5.20 signatures
+    It doesn't look like any changes are needed, but it's good to have the
+    tests in place to make sure.
+
 0.25 - Fri Jun  6 10:38:57 EDT 2014
     Fixes (GH#3): Typo in documentation. Method::Signatures::Simple instead of
     Method::Signature::Simple.
