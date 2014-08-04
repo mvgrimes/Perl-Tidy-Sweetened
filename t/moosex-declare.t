@@ -17,7 +17,12 @@ class BankAccount {                     | class BankAccount {
 }                                       |     }
 ~                                       | }
 
-==== Multipart class ========================================
+==== Multipart class =====================================================
 class A::Point {               | class A::Point {
+    has $!x  is  ro  = 1 ;     |     has $!x is ro = 1;
+}                              | }
+
+==== Class with attrs (GH#5) =============================================
+class A::Point is dirty {      | class A::Point is dirty {
     has $!x  is  ro  = 1 ;     |     has $!x is ro = 1;
 }                              | }
