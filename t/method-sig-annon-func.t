@@ -3,7 +3,10 @@ use Test::More;
 use TidierTests;
 
 TODO: {
+    # Works with Test::More prior to 1.301001_?
     local $TidierTests::TODO = 'Annoymous functions are not supported yet';
+    # Works with Test::More after 1.301001_021
+    local $TODO = 'Annoymous functions are not supported yet';
     TidierTests::do_tests( \*DATA );
 }
 
