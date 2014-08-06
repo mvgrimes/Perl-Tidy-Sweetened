@@ -1,5 +1,8 @@
 Changes for Perl::Tidy::Sweetend
 
+0.27 - Wed Aug  6 04:32:47 EDT 2014
+    Adds $TODO flag that works with newest version of Test::More.
+
 0.26 - Mon Aug  4 03:53:40 EDT 2014
     Deals with MooseX::Delcare's "is" attribute for classes (GH#5)
     Thanks to stratust for the bug report
