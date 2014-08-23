@@ -1,5 +1,8 @@
 Changes for Perl::Tidy::Sweetend
 
+1.01 - Sat Aug 23 14:35:05 EDT 2014
+    Adds support/test for Moops
+
 1.00 - Sat Aug 16 09:57:05 EDT 2014
     Bumps to version 1.00. Been stable for several years now.
 

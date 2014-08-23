@@ -8,7 +8,7 @@ use warnings;
 use Carp;
 $|++;
 
-our $VERSION = '1.00';
+our $VERSION = '1.01';
 
 # Regex to match balanced parans. Reproduced from Regexp::Common to avoid
 # adding a non-core dependency.
@@ -150,7 +150,7 @@ Perl::Tidy::Sweetened::Keyword::Block - Perl::Tidy::Sweetened filter plugin to d
 
 =head1 VERSION
 
-version 1.00
+version 1.01
 
 =head1 SYNOPSIS
 
