@@ -37,23 +37,23 @@
    "provides" : {
       "Perl::Tidy::Sweet" : {
          "file" : "lib/Perl/Tidy/Sweet.pm",
-         "version" : "1.01"
+         "version" : "1.02"
       },
       "Perl::Tidy::Sweetened" : {
          "file" : "lib/Perl/Tidy/Sweetened.pm",
-         "version" : "1.01"
+         "version" : "1.02"
       },
       "Perl::Tidy::Sweetened::Keyword::Block" : {
          "file" : "lib/Perl/Tidy/Sweetened/Keyword/Block.pm",
-         "version" : "1.01"
+         "version" : "1.02"
       },
       "Perl::Tidy::Sweetened::Pluggable" : {
          "file" : "lib/Perl/Tidy/Sweetened/Pluggable.pm",
-         "version" : "1.01"
+         "version" : "1.02"
       },
       "Perl::Tidy::Sweetened::Variable::Twigils" : {
          "file" : "lib/Perl/Tidy/Sweetened/Variable/Twigils.pm",
-         "version" : "1.01"
+         "version" : "1.02"
       }
    },
    "release_status" : "stable",
@@ -68,5 +68,5 @@
          "url" : "http://github.com/mvgrimes/perl-tidy-sweetened"
       }
    },
-   "version" : "1.01"
+   "version" : "1.02"
 }

@@ -1,5 +1,13 @@
 Changes for Perl::Tidy::Sweetend
 
+1.02 - Tue Dec  9 12:28:49 EST 2014
+    Fixes handling of 5.20 experimental signatures
+    - It looked like Perl::Tidy would handle the new 5.20 experimental
+      signatures, but it fails when you try to use an empty hash as a
+      default value (and maybe elsewhere).
+    - Have to add a block parse for "sub (...) {"
+    Adds test for anonymous sub routines for perl 5.20 signatures
+
 1.01 - Sat Aug 23 14:35:05 EDT 2014
     Adds support/test for Moops
 

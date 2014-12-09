@@ -4,7 +4,7 @@ Perl::Tidy::Sweetened - Tweaks to Perl::Tidy to support some syntactic sugar
 
 # VERSION
 
-version 1.01
+version 1.02
 
 # DESCRIPTION
 
@@ -20,7 +20,7 @@ The module uses
 quite an ugly hack, but it is the recommended method of supporting these new
 keywords (see the 2010-12-17 entry in the Perl::Tidy
 [CHANGES](https://metacpan.org/source/SHANCOCK/Perl-Tidy-20120714/CHANGES)
-file). __The resulting formatted code will leave the parameter lists untouched.__
+file). **The resulting formatted code will leave the parameter lists untouched.**
 
 `Perl::Tidy::Sweetened` attempts to support the syntax outlined in the
 following modules, but most of the new syntax styles should work:
