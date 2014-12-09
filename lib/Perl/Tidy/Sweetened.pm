@@ -16,6 +16,17 @@ use Perl::Tidy::Sweetened::Variable::Twigils;
 our $plugins = Perl::Tidy::Sweetened::Pluggable->new();
 
 # Create a subroutine filter for:
+#    sub foo ($i, $j) {}
+# where both the parameter list and the returns type are optional
+$plugins->add_filter(
+    Perl::Tidy::Sweetened::Keyword::Block->new(
+        keyword     => 'sub',
+        marker      => 'SUB',
+        replacement => 'sub',
+        clauses     => [ 'PAREN?' ],
+    ) );
+
+# Create a subroutine filter for:
 #    func foo (Int $i) returns (Bool) {}
 # where both the parameter list and the returns type are optional
 $plugins->add_filter(

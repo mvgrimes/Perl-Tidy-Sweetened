@@ -65,3 +65,8 @@ sub foo () {                              | sub foo () {
 sub foo :prototype($$) ($left, $right) {  | sub foo : prototype($$) ( $left, $right ) {
     return $left + $right;                |     return $left + $right;
 }                                         | }
+
+==== Empty hash as default value ===========================================
+sub foo($x, $y={}){           | sub foo ($x, $y={}) {
+    return $x+$y;             |     return $x + $y;
+}                             | }
