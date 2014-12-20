@@ -4,7 +4,7 @@ Perl::Tidy::Sweetened - Tweaks to Perl::Tidy to support some syntactic sugar
 
 # VERSION
 
-version 1.02
+version 1.03
 
 # DESCRIPTION
 
