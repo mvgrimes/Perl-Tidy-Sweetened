@@ -1,10 +1,11 @@
+[![Build Status](https://travis-ci.org/mvgrimes/Perl-Tidy-Sweetened.svg?branch=master)](https://travis-ci.org/mvgrimes/Perl-Tidy-Sweetened)
 # NAME
 
 Perl::Tidy::Sweetened - Tweaks to Perl::Tidy to support some syntactic sugar
 
 # VERSION
 
-version 1.03
+version 1.04
 
 # DESCRIPTION
 

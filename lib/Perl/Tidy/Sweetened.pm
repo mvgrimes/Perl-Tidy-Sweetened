@@ -7,7 +7,7 @@ use strict;
 use warnings;
 use Perl::Tidy qw();
 
-our $VERSION = '1.03';
+our $VERSION = '1.04';
 
 use Perl::Tidy::Sweetened::Pluggable;
 use Perl::Tidy::Sweetened::Keyword::Block;
@@ -89,7 +89,7 @@ Perl::Tidy::Sweetened - Tweaks to Perl::Tidy to support some syntactic sugar
 
 =head1 VERSION
 
-version 1.03
+version 1.04
 
 =head1 DESCRIPTION
 

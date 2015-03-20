@@ -1,5 +1,14 @@
 Changes for Perl::Tidy::Sweetend
 
+1.04 - Fri Mar 20 09:16:11 EDT 2015
+    This release fixes bug reported in RT#102815.
+    - We had been overwriting the result of the -sbl and -bl flags, which
+      control line breaks before opening subroutine brace.  Thanks to Serge
+      Colle for the bug report.
+    - This fix makes changes to the way the post_filter parses a line. Please
+      test this with your codebase and report any bugs.
+    This upgrade is recommended if you use the -sbl or -bl flags.
+
 1.03 - Sat Dec 20 16:53:27 EST 2014
     Adds the perltidy-sweet command
     - More clearly indicates how this differs from perltidy than perltidier.

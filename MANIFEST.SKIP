@@ -22,6 +22,7 @@ tmp/
 ^local/
 ^\.local-v.*
 ^\.travis.yml
+^.plenv-version$
 README.md
 
 # Distribution specific
