@@ -19,6 +19,7 @@ tmp/
 ^log/
 ^nytprof/
 ^nytprof.out
+^local/
 ^\.local-v.*
 ^\.travis.yml
 README.md
