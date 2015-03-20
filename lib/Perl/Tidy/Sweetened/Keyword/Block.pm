@@ -71,10 +71,10 @@ sub clauses {
     return $clause_re;
 }
 
-sub identifier {  # method or package identifier
+sub identifier {    # method or package identifier
     my $self = shift;
 
-    return '\w+ (?: ::\w+ )*';  # words, possibly separated by ::
+    return '\w+ (?: ::\w+ )*';    # words, possibly separated by ::
 }
 
 sub prefilter {
@@ -111,28 +111,16 @@ sub postfilter {
 
     # Convert back to method
     $code =~ s{
-        ^\s*\K                 # preserve leading whitespace
-        $replacement      \s+  # keyword was convert to sub
-        (?<subname> $subname) \b # the method name and a word break
-        (?<brace> .*? )   \s*  # anything orig following the declaration
-        \#__$marker \s+        # our magic token
-        (?<id> \d+)            # our sub identifier
-        [ ]*                   # trailing spaces (not all whitespace)
+        ^\s*\K                     # preserve leading whitespace
+        $replacement          \s+  # keyword was converted to sub/package
+        (?<subname> $subname) \b   # the method/pkg name and a word break
+        (?<newline> \n? \s* )      # possible newline and indentation
+        (?<brace>   .*?     ) [ ]* # opening brace on followed orig comments
+        \#__$marker           \s+  # our magic token
+        (?<id> \d+)                # our sub identifier
+        [ ]*                       # trailing spaces (not all whitespace)
     }{
-        $self->emit_keyword( $+{subname}, $+{brace}, $+{id} );
-    }egmx;
-
-    # Check to see if tidy turned it into "sub name\n{ #..."
-    $code =~ s{
-        ^\s*\K                   # preserve leading whitespace
-        $replacement        \s+  # method was converted to sub
-        (?<subname> $subname) \n \s* # the method name and a newline
-        (?<brace> \{ .*?)   [ ]* # opening brace on newline followed orig comments
-        \#__$marker         \s+  # our magic token
-        (?<id> \d+)              # our sub identifier
-        [ ]*                     # trailing spaces (not all whitespace)
-    }{
-        $self->emit_keyword( $+{subname}, $+{brace}, $+{id} );
+        $self->emit_keyword( $+{subname}, $+{newline} . $+{brace}, $+{id} );
     }egmx;
 
     return $code;

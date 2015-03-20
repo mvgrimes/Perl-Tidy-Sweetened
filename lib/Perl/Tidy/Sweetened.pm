@@ -23,7 +23,7 @@ $plugins->add_filter(
         keyword     => 'sub',
         marker      => 'SUB',
         replacement => 'sub',
-        clauses     => [ 'PAREN?' ],
+        clauses     => ['PAREN?'],
     ) );
 
 # Create a subroutine filter for:
