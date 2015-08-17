@@ -4,14 +4,15 @@ use Perl::Tidy::Sweetened;
 use Test::Most;
 
 sub do_tests {
-    my ($fh, @args) = @_;
+    my ( $fh, @args ) = @_;
 
-    my ( $message, @test );
+    my ( $message, @test, $todo );
     while ( my $line = <$fh> ) {
-        if ( $line =~ /^={2,} \s* (.*) \s =+ \s* $/x ) {
-            $message = $1;
+        if ( $line =~ /^={2,} \s* (TODO:?)? \s* (.*) \s =+ \s* $/x ) {
+            $todo    = defined $1;
+            $message = $2;
         } elsif ( $line =~ /^\s*$/ ) {
-            test_tidy( \@test, $message, @args );
+            test_tidy( \@test, $message, $todo, @args );
             undef $message;
             @test = ();
         } elsif ( $line =~ /[|]/ ) {
@@ -22,12 +23,12 @@ sub do_tests {
     }
 
     # Test the last one
-    test_tidy( \@test, $message, @args ) if $message;
+    test_tidy( \@test, $message, $todo, @args ) if $message;
     done_testing();
 }
 
 sub test_tidy {
-    my ( $code, $msg, @args ) = @_;
+    my ( $code, $msg, $todo, @args ) = @_;
     my ( @raw, @expected );
 
     for my $line (@$code) {
@@ -40,6 +41,12 @@ sub test_tidy {
     my $raw      = join "\n", @raw;
     my $expected = join '',   @expected;
 
+    run_test( $raw, $expected, $msg, $todo, @args );
+}
+
+sub run_test {
+    my ( $raw, $expected, $msg, $todo, @args ) = @_;
+
     my @tidied;
     ## warn "# -nsyn -ce -npro -l=60 " . join( ' ', @args ), "\n";
     Perl::Tidy::Sweetened::perltidy(
@@ -49,7 +56,21 @@ sub test_tidy {
         argv        => '-nsyn -ce -npro -l=60 ' . join( ' ', @args ),
     );
     my $tidied = join '', @tidied;
-    return eq_or_diff( $tidied, $expected, $msg );
+
+    if ($todo) {
+
+      TODO: {
+            # Works with Test::More prior to 1.301001_?
+            local $TidierTests::TODO = 'Not implmented';
+
+            # Works with Test::More after 1.301001_021
+            local $TODO = 'Not implmented';
+
+            return eq_or_diff( $tidied, $expected, $msg );
+        }
+    } else {
+        return eq_or_diff( $tidied, $expected, $msg );
+    }
 }
 
 1;
