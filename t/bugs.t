@@ -60,3 +60,12 @@ class WORD {                  | class WORD {
                               |
 sub mysub:ATTRIBUTE {         | sub mysub : ATTRIBUTE {
 }                             | }
+
+==== TODO: RT#106398 - Long single line subs ================================
+sub test ($param) {$param->this->is->a->test->that->breaks->perltidysweetened} | sub test ($param) {$param->this->is->a->test->that->breaks->perltidysweetened}
+
+==== RT#106398 - Long single line subs w/o params ===========================
+sub test {$param->this->is->a->test->that->breaks->perltidysweetened} | sub test {
+~                                                                     |     $param->this->is->a->test->that->breaks
+~                                                                     |       ->perltidysweetened;
+~                                                                     | }
