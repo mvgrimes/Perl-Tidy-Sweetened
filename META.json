@@ -59,7 +59,7 @@
    "release_status" : "stable",
    "resources" : {
       "bugtracker" : {
-         "web" : "http://rt.cpan.org/NoAuth/Bugs.html?Dist=Perl-Tidy-Sweetened"
+         "web" : "http://github.com/mvgrimes/perl-tidy-sweetened/issues"
       },
       "license" : [
          "http://dev.perl.org/licenses/"
