@@ -8,7 +8,7 @@ class Person {                        | class Person {
   has 'name' => ( is => 'rw' );       |     has 'name' => ( is => 'rw' );
 }                                     | }
 
-==== Class defn with Moose =============================================
+==== TODO: Class defn with Moose =============================================
 class Person using Moose {            | class Person using Moose {
   has 'name' => ( is => 'rw' );       |     has 'name' => ( is => 'rw' );
 }                                     | }
@@ -31,7 +31,7 @@ class Employee extends Person {       | class Employee extends Person {
    has job_title => (is=>'ro');       |     has job_title => ( is => 'ro' );
 }                                     | }
 
-==== Class that extends and role ======================================
+==== TODO: Class that extends and role ======================================
 class Employee extends Person with Employment {  | class Employee extends Person with Employment {
    has job_title => (is=>'ro');                  |     has job_title => ( is => 'ro' );
 }                                                | }
@@ -50,7 +50,7 @@ class BankAccount {                     | class BankAccount {
 }                                       |     }
 ~                                       | }
 
-==== Class with attribute ================================================
+==== TODO: Class with attribute ================================================
 class Person :mutable {                | class Person : mutable {
    lexical_has job_title => (is=>'ro');|     lexical_has job_title => ( is => 'ro' );
 }                                      | }

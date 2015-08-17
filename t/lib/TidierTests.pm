@@ -47,6 +47,8 @@ sub test_tidy {
 sub run_test {
     my ( $raw, $expected, $msg, $todo, @args ) = @_;
 
+    unlink 'perltidy.ERR' if -e 'perltidy.ERR';
+
     my @tidied;
     ## warn "# -nsyn -ce -npro -l=60 " . join( ' ', @args ), "\n";
     Perl::Tidy::Sweetened::perltidy(
@@ -66,11 +68,21 @@ sub run_test {
             # Works with Test::More after 1.301001_021
             local $TODO = 'Not implmented';
 
-            return eq_or_diff( $tidied, $expected, $msg );
+            return check_test( $tidied, $expected, $msg );
         }
+
     } else {
-        return eq_or_diff( $tidied, $expected, $msg );
+        return check_test( $tidied, $expected, $msg );
     }
+}
+
+sub check_test {
+    my ( $tidied, $expected, $msg ) = @_;
+
+    my $ok_log = ok( !-e 'perltidy.ERR', "$msg: no errors" );
+    my $ok_tidy = eq_or_diff( $tidied, $expected, "$msg: matches" );
+
+    return $ok_log && $ok_tidy;
 }
 
 1;
