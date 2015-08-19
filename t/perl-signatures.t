@@ -77,3 +77,17 @@ $j->map(                | $j->map(
    $x->method();        |         $x->method();
   }                     |     }
 );                      | );
+
+==== 5.20 annoymous sub 2  ===============================================
+my $x = sub($x,$ = 0) { | my $x = sub($x,$ = 0) {
+   $x->method();        |     $x->method();
+  };                    | };
+
+==== Simple declaraion and use =============================================
+use strict;                       | use strict;
+use warnings;                     | use warnings;
+sub foo ($left, $right) {         | 
+    return $left + $right;        | sub foo ($left, $right) {
+}                                 |     return $left + $right;
+say foo( $a, $b );                | }
+~                                 | say foo( $a, $b );
