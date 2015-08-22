@@ -10,7 +10,7 @@ $|++;
 
 our $VERSION = '1.04';
 
-# Regex to match balanced parans. Reproduced from Regexp::Common to avoid
+# Regex to match balanced params. Reproduced from Regexp::Common to avoid
 # adding a non-core dependency.
 #   $RE{balanced}{-parens=>'()'};
 # The (?-1) construct requires 5.010
@@ -34,17 +34,24 @@ sub emit_placeholder {
 
     # Store the signature and returns() for later use
     my $id = $self->{counter}++;
-    $self->{store}->{$id} = $clauses;
+    $self->{store_clause}->{$id} = $clauses;
+    $self->{store_sub}->{$id} = $subname;
 
-    return sprintf '%s %s %s #__%s %s',
-      $self->replacement, $subname, $brace, $self->marker, $id;
+    # Turns 'my_method_name' into 'SUB4ethod_name'
+    my $marker = $self->marker . $id;
+    substr( $subname, 0, length($marker), $marker );
+
+    return sprintf '%s %s %s',
+      $self->replacement, $marker, $brace;
 }
 
 sub emit_keyword {
-    my ( $self, $subname, $brace, $id ) = @_;
+    my ( $self, $brace, $id ) = @_;
 
     # Get the signature and returns() from store
-    my $clauses = $self->{store}->{$id};
+    my $clauses = $self->{store_clause}->{$id};
+
+    my $subname = $self->{store_sub}->{$id};
 
     # Combine clauses (parameter list, returns(), etc) into a string separate
     # each with a space and lead with a space if there are any
@@ -113,14 +120,14 @@ sub postfilter {
     $code =~ s{
         ^\s*\K                     # preserve leading whitespace
         $replacement          \s+  # keyword was converted to sub/package
-        (?<subname> $subname) \b   # the method/pkg name and a word break
+        $marker                    #
+        (?<id> \d+)                # the identifier
+        [\w:]* \b                  # the rest of the orignal sub/package name
         (?<newline> \n? \s* )      # possible newline and indentation
         (?<brace>   .*?     ) [ ]* # opening brace on followed orig comments
-        \#__$marker           \s+  # our magic token
-        (?<id> \d+)                # our sub identifier
         [ ]*                       # trailing spaces (not all whitespace)
     }{
-        $self->emit_keyword( $+{subname}, $+{newline} . $+{brace}, $+{id} );
+        $self->emit_keyword( $+{newline} . $+{brace}, $+{id} );
     }egmx;
 
     return $code;
@@ -146,10 +153,10 @@ version 1.04
 
     $plugins->add_filter(
         Perl::Tidy::Sweetened::Keyword::Block->new(
-            keyword    => 'method',
-            marker     => 'METHOD',
-            replacment => 'sub',
-            clauses    => [ 'PAREN?', '(returns \s* PAREN)?' ],
+            keyword     => 'method',
+            marker      => 'METHOD',
+            replacement => 'sub',
+            clauses     => [ 'PAREN?', '(returns \s* PAREN)?' ],
         ) );
 
 =head1 DESCRIPTION
