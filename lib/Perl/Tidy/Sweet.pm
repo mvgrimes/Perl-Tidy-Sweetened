@@ -6,7 +6,7 @@ use strict;
 use warnings;
 use base 'Perl::Tidy::Sweetened';
 
-our $VERSION = '1.04';
+our $VERSION = '1.05';
 
 1;
 
@@ -20,7 +20,7 @@ Perl::Tidy::Sweet - Tweaks to Perl::Tidy to support some syntactic sugar
 
 =head1 VERSION
 
-version 1.04
+version 1.05
 
 =for html <a href="https://travis-ci.org/mvgrimes/Perl-Tidy-Sweetened"><img src="https://travis-ci.org/mvgrimes/Perl-Tidy-Sweetened.svg?branch=master" alt="Build Status"></a>
 <a href="https://metacpan.org/pod/Perl::Tidy::Sweetened"><img alt="CPAN version" src="https://badge.fury.io/pl/Perl::Tidy::Sweetened.svg" /></a>

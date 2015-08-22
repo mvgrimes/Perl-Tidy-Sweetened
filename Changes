@@ -1,5 +1,37 @@
 Changes for Perl::Tidy::Sweetend
 
+1.05 - Sat Aug 22 10:07:24 EDT 2015
+    Changes placeholder from comment at end of line, to munged sub/pkg name.
+    So, instead of turning:
+
+        method test_method_a ($self) {
+
+    into
+
+        sub test_method_a { # SUB1
+
+    we now turn it into
+
+        sub SUB1_method_a {
+
+    This eliminates issues with Perl::Tidy moving that trailing comment, and
+    attempts to preserve the length of the method name so any changes to
+    formatting due to name length will be consistent.
+
+    Bug fixes and improvements to tests:
+    - Bug fix: RT#106398 "long single line subs" should be handled correctly.
+    - Adds (failing) test for RT#106464
+    - Adds checks for creation of perltidy.ERR file as part of tests
+    - Adds simpler means of specifying TODO tests
+
+    TODO:
+    - Would like to preserve the *length* of the clauses in order to allow
+      Perl::Tidy to format them. This could probably be done with prototypes
+      for sub, but not sure what you do with packages.
+
+    [This upgrade is recommended if you are experiencing issues with
+    "# SUB_" comments being left in your code.]
+
 1.04 - Fri Mar 20 09:16:11 EDT 2015
     This release fixes bug reported in RT#102815.
     - We had been overwriting the result of the -sbl and -bl flags, which
@@ -7,7 +39,7 @@ Changes for Perl::Tidy::Sweetend
       Colle for the bug report.
     - This fix makes changes to the way the post_filter parses a line. Please
       test this with your codebase and report any bugs.
-    This upgrade is recommended if you use the -sbl or -bl flags.
+    [This upgrade is recommended if you use the -sbl or -bl flags.]
 
 1.03 - Sat Dec 20 16:53:27 EST 2014
     Adds the perltidy-sweet command
