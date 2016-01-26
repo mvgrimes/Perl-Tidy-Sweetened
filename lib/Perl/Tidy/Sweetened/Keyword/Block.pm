@@ -92,7 +92,8 @@ sub prefilter {
     $code =~ s{
         ^\s*\K                    # okay to have leading whitespace (preserve)
         $keyword             \s+  # the "func/method" keyword
-        (?<subname> $subname) \s* # the function name or class name (needs ::)
+        (?<subname> $subname)     # the function name or class name (needs ::)
+        (?!\w|\s*=>) \s*          # check to make sure this isn't a sub call with params
         @{[ $self->clauses ]}     # any clauses defined (ie, a parameter list)
         (?<brace> .*?)            # anything else (ie, comments) including brace
         $
