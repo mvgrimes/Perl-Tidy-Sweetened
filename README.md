@@ -4,7 +4,7 @@ Perl::Tidy::Sweetened - Tweaks to Perl::Tidy to support some syntactic sugar
 
 # VERSION
 
-version 1.05
+version 1.06
 
 <div>
     <a href="https://travis-ci.org/mvgrimes/Perl-Tidy-Sweetened"><img src="https://travis-ci.org/mvgrimes/Perl-Tidy-Sweetened.svg?branch=master" alt="Build Status"></a>
@@ -57,11 +57,11 @@ Please report any bugs or suggestions at
 
 # AUTHOR
 
-Mark Grimes, <mgrimes@cpan.org>
+Mark Grimes, &lt;mgrimes@cpan.org>
 
 # COPYRIGHT AND LICENSE
 
-This software is copyright (c) 2015 by Mark Grimes, <mgrimes@cpan.org>.
+This software is copyright (c) 2016 by Mark Grimes, &lt;mgrimes@cpan.org>.
 
 This is free software; you can redistribute it and/or modify it under
 the same terms as the Perl 5 programming language system itself.

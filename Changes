@@ -1,5 +1,11 @@
 Changes for Perl::Tidy::Sweetend
 
+1.06 - Tue Jan 26 17:21:34 EST 2016
+    Ignore 'method' functions (not pseudo-keywords) like those in
+      MooseX::Role::Parameterized (PR#6, RT#106464).
+    Use faster container-based infrastructure for Travis (PR#7).
+    Both of these patch were contributed by @oschwald. Thanks!
+
 1.05 - Sat Aug 22 10:07:24 EDT 2015
     Changes placeholder from comment at end of line, to munged sub/pkg name.
     So, instead of turning:
