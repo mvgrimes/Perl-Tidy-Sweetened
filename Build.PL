@@ -3,6 +3,7 @@ use Module::Build;
 my $build = Module::Build->new(
     module_name   => 'Perl::Tidy::Sweetened',
     license       => 'perl',
+    dist_author   => 'Mark Grimes E<lt>mgrimes@cpan.orgE<gt>',
     create_readme => 1,
     script_files  => [qw(script/perltidier)],
     requires      => {
@@ -21,7 +22,12 @@ my $build = Module::Build->new(
             bugtracker =>
               'http://github.com/mvgrimes/perl-tidy-sweetened/issues',
             repository => 'http://github.com/mvgrimes/perl-tidy-sweetened',
-        }
+        },
+        x_contributors => [
+            'Kent Fredric (@kentnl)',
+            'Gregoy Oschwald (@oschwal)',
+            'Curtis Brandt (@aggrolite)',
+        ],
     },
 );
 

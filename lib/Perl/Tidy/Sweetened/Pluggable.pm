@@ -5,7 +5,7 @@ package Perl::Tidy::Sweetened::Pluggable;
 use strict;
 use warnings;
 
-our $VERSION = '1.06';
+our $VERSION = '1.07';
 
 sub new {
     my ( $class, %args ) = @_;
@@ -55,7 +55,7 @@ Perl::Tidy::Sweetened::Pluggable - Simple object to facilitate a pluggable filte
 
 =head1 VERSION
 
-version 1.06
+version 1.07
 
 =head1 SYNOPSIS
 
@@ -74,22 +74,43 @@ version 1.06
 
 Builds a pluggable, chainable list of filters.
 
-=head1 THANKS
+=head1 AUTHOR
 
-See L<Perl::Tidy::Sweetened>
+Mark Grimes E<lt>mgrimes@cpan.orgE<gt>
+
+=head1 CONTRIBUTORS
+
+=over 4
+
+=item *
+
+Kent Fredric (@kentnl)
+
+=item *
+
+Gregoy Oschwald (@oschwal)
+
+=item *
+
+Curtis Brandt (@aggrolite)
+
+=back
+
+=head1 SOURCE
+
+Source repository is at L<https://github.com/mvgrimes/Perl-Tidy-Sweetened>.
 
 =head1 BUGS
 
-Please report any bugs or suggestions at
-L<http://rt.cpan.org/NoAuth/Bugs.html?Dist=Perl-Tidy-Sweetened>
+Please report any bugs or feature requests on the bugtracker website L<http://github.com/mvgrimes/perl-tidy-sweetened/issues>
 
-=head1 AUTHOR
-
-Mark Grimes, E<lt>mgrimes@cpan.orgE<gt>
+When submitting a bug or request, please include a test-file or a
+patch to an existing test-file that illustrates the bug or desired
+feature.
 
 =head1 COPYRIGHT AND LICENSE
 
-This software is copyright (c) 2016 by Mark Grimes, E<lt>mgrimes@cpan.orgE<gt>.
+This software is copyright (c) 2016 by Mark Grimes E<lt>mgrimes@cpan.orgE<gt>.
 
 This is free software; you can redistribute it and/or modify it under
 the same terms as the Perl 5 programming language system itself.

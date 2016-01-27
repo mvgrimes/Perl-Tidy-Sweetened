@@ -4,7 +4,7 @@ Perl::Tidy::Sweetened - Tweaks to Perl::Tidy to support some syntactic sugar
 
 # VERSION
 
-version 1.06
+version 1.07
 
 <div>
     <a href="https://travis-ci.org/mvgrimes/Perl-Tidy-Sweetened"><img src="https://travis-ci.org/mvgrimes/Perl-Tidy-Sweetened.svg?branch=master" alt="Build Status"></a>
@@ -38,30 +38,40 @@ following modules, but most of the new syntax styles should work:
 - MooseX::Declare
 - perl 5.20 signatures
 
-# SEE ALSO
-
-[Perl::Tidy](https://metacpan.org/pod/Perl::Tidy)
-
 # THANKS
 
 The idea and much of original code taken from Jonathan Swartz'
 [blog](http://www.openswartz.com/2010/12/19/perltidy-and-method-happy-together/).
 
-Kent Fredric refactored the code into the pluggable architecture. Very nice
-work, thank you.
+# SEE ALSO
 
-# BUGS
-
-Please report any bugs or suggestions at
-[http://rt.cpan.org/NoAuth/Bugs.html?Dist=Perl-Tidy-Sweetened](http://rt.cpan.org/NoAuth/Bugs.html?Dist=Perl-Tidy-Sweetened)
+[Perl::Tidy](https://metacpan.org/pod/Perl::Tidy)
 
 # AUTHOR
 
-Mark Grimes, &lt;mgrimes@cpan.org>
+Mark Grimes &lt;mgrimes@cpan.org>
+
+# CONTRIBUTORS
+
+- Kent Fredric (@kentnl)
+- Gregoy Oschwald (@oschwal)
+- Curtis Brandt (@aggrolite)
+
+# SOURCE
+
+Source repository is at [https://github.com/mvgrimes/Perl-Tidy-Sweetened](https://github.com/mvgrimes/Perl-Tidy-Sweetened).
+
+# BUGS
+
+Please report any bugs or feature requests on the bugtracker website [http://github.com/mvgrimes/perl-tidy-sweetened/issues](http://github.com/mvgrimes/perl-tidy-sweetened/issues)
+
+When submitting a bug or request, please include a test-file or a
+patch to an existing test-file that illustrates the bug or desired
+feature.
 
 # COPYRIGHT AND LICENSE
 
-This software is copyright (c) 2016 by Mark Grimes, &lt;mgrimes@cpan.org>.
+This software is copyright (c) 2016 by Mark Grimes &lt;mgrimes@cpan.org>.
 
 This is free software; you can redistribute it and/or modify it under
 the same terms as the Perl 5 programming language system itself.

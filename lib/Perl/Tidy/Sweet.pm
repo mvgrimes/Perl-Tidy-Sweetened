@@ -6,7 +6,7 @@ use strict;
 use warnings;
 use base 'Perl::Tidy::Sweetened';
 
-our $VERSION = '1.06';
+our $VERSION = '1.07';
 
 1;
 
@@ -20,7 +20,7 @@ Perl::Tidy::Sweet - Tweaks to Perl::Tidy to support some syntactic sugar
 
 =head1 VERSION
 
-version 1.06
+version 1.07
 
 =for html <a href="https://travis-ci.org/mvgrimes/Perl-Tidy-Sweetened"><img src="https://travis-ci.org/mvgrimes/Perl-Tidy-Sweetened.svg?branch=master" alt="Build Status"></a>
 <a href="https://metacpan.org/pod/Perl::Tidy::Sweetened"><img alt="CPAN version" src="https://badge.fury.io/pl/Perl::Tidy::Sweetened.svg" /></a>
@@ -60,26 +60,43 @@ following modules, but most of the new syntax styles should work:
 
 L<Perl::Tidy>
 
-=head1 THANKS
+=head1 AUTHOR
 
-The idea and much of original code taken from Jonathan Swartz'
-L<blog|http://www.openswartz.com/2010/12/19/perltidy-and-method-happy-together/>.
+Mark Grimes E<lt>mgrimes@cpan.orgE<gt>
 
-Kent Fredric refactored the code into the pluggable architecture. Very nice
-work, thank you.
+=head1 CONTRIBUTORS
+
+=over 4
+
+=item *
+
+Kent Fredric (@kentnl)
+
+=item *
+
+Gregoy Oschwald (@oschwal)
+
+=item *
+
+Curtis Brandt (@aggrolite)
+
+=back
+
+=head1 SOURCE
+
+Source repository is at L<https://github.com/mvgrimes/Perl-Tidy-Sweetened>.
 
 =head1 BUGS
 
-Please report any bugs or suggestions at
-L<http://rt.cpan.org/NoAuth/Bugs.html?Dist=Perl-Tidy-Sweetened>
+Please report any bugs or feature requests on the bugtracker website L<http://github.com/mvgrimes/perl-tidy-sweetened/issues>
 
-=head1 AUTHOR
-
-Mark Grimes, E<lt>mgrimes@cpan.orgE<gt>
+When submitting a bug or request, please include a test-file or a
+patch to an existing test-file that illustrates the bug or desired
+feature.
 
 =head1 COPYRIGHT AND LICENSE
 
-This software is copyright (c) 2016 by Mark Grimes, E<lt>mgrimes@cpan.orgE<gt>.
+This software is copyright (c) 2016 by Mark Grimes E<lt>mgrimes@cpan.orgE<gt>.
 
 This is free software; you can redistribute it and/or modify it under
 the same terms as the Perl 5 programming language system itself.
