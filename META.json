@@ -4,7 +4,7 @@
       "Mark Grimes E<lt>mgrimes@cpan.orgE<gt>"
    ],
    "dynamic_config" : 1,
-   "generated_by" : "Module::Build version 0.4211",
+   "generated_by" : "Module::Build version 0.4216",
    "license" : [
       "perl_5"
    ],
