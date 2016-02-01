@@ -3,8 +3,8 @@
    "author" : [
       "Mark Grimes E<lt>mgrimes@cpan.orgE<gt>"
    ],
-   "dynamic_config" : 1,
-   "generated_by" : "Module::Build version 0.38, CPAN::Meta::Converter version 2.120351",
+   "dynamic_config" : 0,
+   "generated_by" : "App::ModuleBuildTiny version 0.011",
    "license" : [
       "perl_5"
    ],
@@ -14,16 +14,14 @@
    },
    "name" : "Perl-Tidy-Sweetened",
    "prereqs" : {
-      "build" : {
-         "requires" : {
-            "Test::Differences" : "0",
-            "Test::More" : "0.87",
-            "Test::Most" : "0"
-         }
-      },
       "configure" : {
          "requires" : {
-            "Module::Build" : "0.36"
+            "Module::Build::Tiny" : "0.034"
+         }
+      },
+      "develop" : {
+         "requires" : {
+            "App::ModuleBuildTiny" : "0.011"
          }
       },
       "runtime" : {
@@ -31,6 +29,13 @@
             "Carp" : "0",
             "Perl::Tidy" : "0",
             "perl" : "5.010"
+         }
+      },
+      "test" : {
+         "requires" : {
+            "Test::Differences" : "0",
+            "Test::More" : "0.87",
+            "Test::Most" : "0"
          }
       }
    },
@@ -61,11 +66,10 @@
       "bugtracker" : {
          "web" : "http://github.com/mvgrimes/perl-tidy-sweetened/issues"
       },
-      "license" : [
-         "http://dev.perl.org/licenses/"
-      ],
       "repository" : {
-         "url" : "http://github.com/mvgrimes/perl-tidy-sweetened"
+         "type" : "git",
+         "url" : "http://github.com/mvgrimes/perl-tidy-sweetened.git",
+         "web" : "http://github.com/mvgrimes/perl-tidy-sweetened"
       }
    },
    "version" : "1.08",
@@ -73,5 +77,6 @@
       "Kent Fredric (@kentnl)",
       "Gregoy Oschwald (@oschwal)",
       "Curtis Brandt (@aggrolite)"
-   ]
+   ],
+   "x_serialization_backend" : "JSON::PP version 2.27300"
 }

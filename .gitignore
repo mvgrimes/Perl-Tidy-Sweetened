@@ -16,6 +16,7 @@ exp/
 tmp/
 Changes.bak
 log/tmp.log*
+_build_params
 
 .plenv-version
 local/

@@ -1,0 +1,18 @@
+{
+   "name" : "Perl-Tidy-Sweetened",
+   "resources" : {
+      "repository" : {
+         "web" : "http://github.com/mvgrimes/perl-tidy-sweetened",
+         "url" : "http://github.com/mvgrimes/perl-tidy-sweetened.git",
+         "type" : "git"
+      },
+      "bugtracker" : {
+         "web" : "http://github.com/mvgrimes/perl-tidy-sweetened/issues"
+      }
+   },
+   "x_contributors" : [
+      "Kent Fredric (@kentnl)",
+      "Gregoy Oschwald (@oschwal)",
+      "Curtis Brandt (@aggrolite)"
+   ]
+}

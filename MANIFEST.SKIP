@@ -23,6 +23,8 @@ tmp/
 ^\.local-v.*
 ^\.travis.yml
 ^.plenv-version$
+metamerge.json
+metamerge.yml
 README.md
 
 # Distribution specific
