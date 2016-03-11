@@ -1,7 +1,10 @@
 package TidierTests;
 
+use Perl::Tidy;
 use Perl::Tidy::Sweetened;
 use Test::Most;
+
+warn "# Perl::Tidy versions: " . $Perl::Tidy::VERSION;
 
 sub do_tests {
     my ( $fh, @args ) = @_;

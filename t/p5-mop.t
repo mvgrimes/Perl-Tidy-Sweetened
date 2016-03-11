@@ -9,7 +9,7 @@ class Point{                         | class Point {
 sub name3{}                          | sub name3 { }
 
 ==== Class with inheritance ===================================
-class   Point3D  extends Point{       | class Point3D extends Point {
+class   Point3D  extends Point{      | class Point3D extends Point {
 }                                    | }
 
 ==== Class with attribute ==============================================

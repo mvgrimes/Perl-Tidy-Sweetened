@@ -5,7 +5,7 @@ TidierTests::do_tests(\*DATA);
 __DATA__
 ==== Simple class defn =================================================
 class Person {                        | class Person {
-  has 'name' => ( is => 'rw' );       |     has 'name' => ( is => 'rw' );
+  has 'name' => (is => 'rw');         |     has 'name' => ( is => 'rw' );
 }                                     | }
 
 ==== TODO: Class defn with Moose =============================================
