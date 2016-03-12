@@ -93,7 +93,7 @@ version 1.09
 =head1 STATUS
 
 =for html <a href="https://travis-ci.org/mvgrimes/Perl-Tidy-Sweetened"><img src="https://travis-ci.org/mvgrimes/Perl-Tidy-Sweetened.svg?branch=master" alt="Build Status"></a>
-<a href="https://metacpan.org/pod/Perl::Tidy::Sweetened"><img alt="CPAN version" src="https://badge.fury.io/pl/Perl::Tidy::Sweetened.svg" /></a>
+<a href="https://metacpan.org/pod/Perl::Tidy::Sweetened"><img alt="CPAN version" src="https://badge.fury.io/pl/Perl-Tidy-Sweetened.svg" /></a>
 
 =head1 DESCRIPTION
 
