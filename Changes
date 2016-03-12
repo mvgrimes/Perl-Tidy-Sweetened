@@ -1,5 +1,11 @@
 Changes for Perl::Tidy::Sweetend
 
+1.09 - Fri Mar 11 21:27:42 EST 2016
+    Converts from Module::Build to Module::Built::Tiny and the mbtiny tool
+    Adds perltidy-sweet script to distribution
+    Fixes issues with badges
+    [Optional upgrade]
+
 1.08 - Fri Mar 11 20:55:29 EST 2016
     Updates tests to support Perl::Tidy 20160301 and later
     - New version of Perl::Tidy has some support for new syntax. This is

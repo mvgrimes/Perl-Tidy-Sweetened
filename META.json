@@ -42,37 +42,37 @@
    "provides" : {
       "Perl::Tidy::Sweet" : {
          "file" : "lib/Perl/Tidy/Sweet.pm",
-         "version" : "1.08"
+         "version" : "1.09"
       },
       "Perl::Tidy::Sweetened" : {
          "file" : "lib/Perl/Tidy/Sweetened.pm",
-         "version" : "1.08"
+         "version" : "1.09"
       },
       "Perl::Tidy::Sweetened::Keyword::Block" : {
          "file" : "lib/Perl/Tidy/Sweetened/Keyword/Block.pm",
-         "version" : "1.08"
+         "version" : "1.09"
       },
       "Perl::Tidy::Sweetened::Pluggable" : {
          "file" : "lib/Perl/Tidy/Sweetened/Pluggable.pm",
-         "version" : "1.08"
+         "version" : "1.09"
       },
       "Perl::Tidy::Sweetened::Variable::Twigils" : {
          "file" : "lib/Perl/Tidy/Sweetened/Variable/Twigils.pm",
-         "version" : "1.08"
+         "version" : "1.09"
       }
    },
    "release_status" : "stable",
    "resources" : {
       "bugtracker" : {
-         "web" : "http://github.com/mvgrimes/perl-tidy-sweetened/issues"
+         "web" : "http://github.com/mvgrimes/Perl-Tidy-Sweetened/issues"
       },
       "repository" : {
          "type" : "git",
-         "url" : "http://github.com/mvgrimes/perl-tidy-sweetened.git",
-         "web" : "http://github.com/mvgrimes/perl-tidy-sweetened"
+         "url" : "http://github.com/mvgrimes/Perl-Tidy-Sweetened.git",
+         "web" : "http://github.com/mvgrimes/Perl-Tidy-Sweetened"
       }
    },
-   "version" : "1.08",
+   "version" : "1.09",
    "x_contributors" : [
       "Kent Fredric (@kentnl)",
       "Gregoy Oschwald (@oschwal)",

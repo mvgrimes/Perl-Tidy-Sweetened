@@ -4,12 +4,13 @@ Perl::Tidy::Sweetened - Tweaks to Perl::Tidy to support some syntactic sugar
 
 # VERSION
 
-version 1.08
+version 1.09
 
 # STATUS
 
 <div>
-    <p><a href="https://travis-ci.org/mvgrimes/perl-tidy-sweetened"><img src="https://api.travis-ci.org/mvgrimes/perl-tidy-sweetened.svg?branch=master" alt="Travis status" /></a> <a href="https://metacpan.org/release/Perl-Tidy-Sweetened"><img src="https://badge.fury.io/pl/Perl-Tidy-Sweetened.svg" alt="CPAN version" /></a></p>
+    <a href="https://travis-ci.org/mvgrimes/Perl-Tidy-Sweetened"><img src="https://travis-ci.org/mvgrimes/Perl-Tidy-Sweetened.svg?branch=master" alt="Build Status"></a>
+    <a href="https://metacpan.org/pod/Perl::Tidy::Sweetened"><img alt="CPAN version" src="https://badge.fury.io/pl/Perl::Tidy::Sweetened.svg" /></a>
 </div>
 
 # DESCRIPTION
@@ -64,7 +65,7 @@ Source repository is at [https://github.com/mvgrimes/Perl-Tidy-Sweetened](https:
 
 # BUGS
 
-Please report any bugs or feature requests on the bugtracker website [http://github.com/mvgrimes/perl-tidy-sweetened/issues](http://github.com/mvgrimes/perl-tidy-sweetened/issues)
+Please report any bugs or feature requests on the bugtracker website [http://github.com/mvgrimes/Perl-Tidy-Sweetened/issues](http://github.com/mvgrimes/Perl-Tidy-Sweetened/issues)
 
 When submitting a bug or request, please include a test-file or a
 patch to an existing test-file that illustrates the bug or desired

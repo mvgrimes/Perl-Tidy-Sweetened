@@ -6,7 +6,7 @@ use strict;
 use warnings;
 use base 'Perl::Tidy::Sweetened';
 
-our $VERSION = '1.08';
+our $VERSION = '1.09';
 
 1;
 
@@ -20,7 +20,9 @@ Perl::Tidy::Sweet - Tweaks to Perl::Tidy to support some syntactic sugar
 
 =head1 VERSION
 
-version 1.08
+version 1.09
+
+=head1 STATUS
 
 =for html <a href="https://travis-ci.org/mvgrimes/Perl-Tidy-Sweetened"><img src="https://travis-ci.org/mvgrimes/Perl-Tidy-Sweetened.svg?branch=master" alt="Build Status"></a>
 <a href="https://metacpan.org/pod/Perl::Tidy::Sweetened"><img alt="CPAN version" src="https://badge.fury.io/pl/Perl::Tidy::Sweetened.svg" /></a>
@@ -88,7 +90,7 @@ Source repository is at L<https://github.com/mvgrimes/Perl-Tidy-Sweetened>.
 
 =head1 BUGS
 
-Please report any bugs or feature requests on the bugtracker website L<http://github.com/mvgrimes/perl-tidy-sweetened/issues>
+Please report any bugs or feature requests on the bugtracker website L<http://github.com/mvgrimes/Perl-Tidy-Sweetened/issues>
 
 When submitting a bug or request, please include a test-file or a
 patch to an existing test-file that illustrates the bug or desired
