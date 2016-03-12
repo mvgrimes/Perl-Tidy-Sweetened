@@ -1,5 +1,11 @@
 Changes for Perl::Tidy::Sweetend
 
+1.08 - Fri Mar 11 20:55:29 EST 2016
+    Updates tests to support Perl::Tidy 20160301 and later
+    - New version of Perl::Tidy has some support for new syntax. This is
+      great, but it has some minor impact on spacing in our tests.
+    [Upgrade recommended if you are using newer versions of Perl::Tidy]
+
 1.07 - Wed Jan 27 09:36:42 EST 2016
     Adds new podweaver sections
     - Bugs in pod now point to GH issues

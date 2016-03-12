@@ -4,11 +4,12 @@ Perl::Tidy::Sweetened - Tweaks to Perl::Tidy to support some syntactic sugar
 
 # VERSION
 
-version 1.07
+version 1.08
+
+# STATUS
 
 <div>
-    <a href="https://travis-ci.org/mvgrimes/Perl-Tidy-Sweetened"><img src="https://travis-ci.org/mvgrimes/Perl-Tidy-Sweetened.svg?branch=master" alt="Build Status"></a>
-    <a href="https://metacpan.org/pod/Perl::Tidy::Sweetened"><img alt="CPAN version" src="https://badge.fury.io/pl/Perl::Tidy::Sweetened.svg" /></a>
+    <p><a href="https://travis-ci.org/mvgrimes/perl-tidy-sweetened"><img src="https://api.travis-ci.org/mvgrimes/perl-tidy-sweetened.svg?branch=master" alt="Travis status" /></a> <a href="https://metacpan.org/release/Perl-Tidy-Sweetened"><img src="https://badge.fury.io/pl/Perl-Tidy-Sweetened.svg" alt="CPAN version" /></a></p>
 </div>
 
 # DESCRIPTION
@@ -49,7 +50,7 @@ The idea and much of original code taken from Jonathan Swartz'
 
 # AUTHOR
 
-Mark Grimes &lt;mgrimes@cpan.org>
+Mark Grimes <mgrimes@cpan.org>
 
 # CONTRIBUTORS
 
@@ -71,7 +72,7 @@ feature.
 
 # COPYRIGHT AND LICENSE
 
-This software is copyright (c) 2016 by Mark Grimes &lt;mgrimes@cpan.org>.
+This software is copyright (c) 2016 by Mark Grimes <mgrimes@cpan.org>.
 
 This is free software; you can redistribute it and/or modify it under
 the same terms as the Perl 5 programming language system itself.

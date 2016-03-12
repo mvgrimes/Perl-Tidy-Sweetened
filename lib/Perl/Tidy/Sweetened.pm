@@ -7,7 +7,7 @@ use strict;
 use warnings;
 use Perl::Tidy qw();
 
-our $VERSION = '1.07';
+our $VERSION = '1.08';
 
 use Perl::Tidy::Sweetened::Pluggable;
 use Perl::Tidy::Sweetened::Keyword::Block;
@@ -88,17 +88,11 @@ Perl::Tidy::Sweetened - Tweaks to Perl::Tidy to support some syntactic sugar
 
 =head1 VERSION
 
-version 1.07
+version 1.08
 
 =head1 STATUS
 
-
-
-=begin HTML
-
-<p><a href="https://travis-ci.org/mvgrimes/perl-tidy-sweetened"><img src="https://api.travis-ci.org/mvgrimes/perl-tidy-sweetened.svg?branch=master" alt="Travis status" /></a> <a href="https://metacpan.org/release/Perl-Tidy-Sweetened"><img src="https://badge.fury.io/pl/Perl-Tidy-Sweetened.svg" alt="CPAN version" /></a></p>
-
-=end HTML
+=for html <p><a href="https://travis-ci.org/mvgrimes/perl-tidy-sweetened"><img src="https://api.travis-ci.org/mvgrimes/perl-tidy-sweetened.svg?branch=master" alt="Travis status" /></a> <a href="https://metacpan.org/release/Perl-Tidy-Sweetened"><img src="https://badge.fury.io/pl/Perl-Tidy-Sweetened.svg" alt="CPAN version" /></a></p>
 
 =head1 DESCRIPTION
 
