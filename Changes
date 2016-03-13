@@ -1,5 +1,12 @@
 Changes for Perl::Tidy::Sweetend
 
+1.10 - Sun Mar 13 13:14:01 EDT 2016
+    Skips test that fails with Perl::Tidy 20160301 due to a Perl::Tidy bug
+    - Adds test-all script to run against multiple versions of Perl::Tidy
+    - Moves display of Perl::Tidy version to t/00-version.t
+    Fixes typo in cpan badge URL
+    [Only changes tests. No need to upgrade.]
+
 1.09 - Fri Mar 11 21:27:42 EST 2016
     Converts from Module::Build to Module::Built::Tiny and the mbtiny tool
     Adds perltidy-sweet script to distribution
