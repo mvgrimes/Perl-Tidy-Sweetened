@@ -1,48 +1,91 @@
 use lib 't/lib';
+use Test::More;
 use TidierTests;
-TidierTests::do_tests(\*DATA);
 
-__DATA__
-==== Simple method usage =================================================
-method name1{                         | method name1 {
-}                                     | }
-sub name2{                            |
-}                                     | sub name2 {
-~                                     | }
+run_test( <<'RAW', <<'TIDIED', 'Simple method usage', '',  );
+method name1{
+}
+sub name2{
+}
+RAW
+method name1 {
+}
 
-==== Method with signature ==============================================
-method name1 (class: $that) {         | method name1 (class: $that) {
-}                                     | }
-method name2( :$arg1, :$arg2 ){       |
-}                                     | method name2 ( :$arg1, :$arg2 ) {
-sub name3 {}                          | }
-~                                     | sub name3 { }
+sub name2 {
+}
+TIDIED
 
-==== With paramater typing =============================================
-method morning (Str $name) {            | method morning (Str $name) {
-    $self->say("Hi ${name}!");          |     $self->say("Hi ${name}!");
-}                                       | }
+run_test( <<'RAW', <<'TIDIED', 'Method with signature', '',  );
+method name1 (class: $that) {
+}
+method name2( :$arg1, :$arg2 ){
+}
+sub name3 {}
+RAW
+method name1 (class: $that) {
+}
 
-==== With params with constraints ======================================
-method hello (:$age where { $_ > 0 }) { | method hello (:$age where { $_ > 0 }) {
-}                                       | }
+method name2 ( :$arg1, :$arg2 ) {
+}
+sub name3 { }
+TIDIED
 
-==== Multiple line signatures ==========================================
-method name1 (Str $bar,                 | method name1 (Str $bar,
-              Int $foo where { $_ > 0 } |               Int $foo where { $_ > 0 }
-             ) {                        |              ) {
-}                                       | }
+run_test( <<'RAW', <<'TIDIED', 'With paramater typing', '',  );
+method morning (Str $name) {
+    $self->say("Hi ${name}!");
+}
+RAW
+method morning (Str $name) {
+    $self->say("Hi ${name}!");
+}
+TIDIED
 
-==== Multiple line signatures w/ comment  ===============================
-method name1 (Str $bar,                 | method name1 (Str $bar,
-              Int $foo where { $_ > 0 } |               Int $foo where { $_ > 0 }
-             ) {   # Fun stuff          |              ) {    # Fun stuff
-}                                       | }
+run_test( <<'RAW', <<'TIDIED', 'With params with constraints', '',  );
+method hello (:$age where { $_ > 0 }) {
+}
+RAW
+method hello (:$age where { $_ > 0 }) {
+}
+TIDIED
 
-==== RT#85076 - handle returns() with signature  ============================
-method foo ( File :$file! ) returns(Bool) {  | method foo ( File :$file! ) returns(Bool) {
-}                                            | }
+run_test( <<'RAW', <<'TIDIED', 'Multiple line signatures', '',  );
+method name1 (Str $bar,
+              Int $foo where { $_ > 0 }
+             ) {
+}
+RAW
+method name1 (Str $bar,
+              Int $foo where { $_ > 0 }
+             ) {
+}
+TIDIED
 
-==== RT#85076 - handle returns() ============================================
-method foo returns (Bool) {            | method foo returns (Bool) {
-}                                      | }
+run_test( <<'RAW', <<'TIDIED', 'Multiple line signatures w/ comment ', '',  );
+method name1 (Str $bar,
+              Int $foo where { $_ > 0 }
+             ) {   # Fun stuff
+}
+RAW
+method name1 (Str $bar,
+              Int $foo where { $_ > 0 }
+             ) {    # Fun stuff
+}
+TIDIED
+
+run_test( <<'RAW', <<'TIDIED', 'RT#85076 - handle returns() with signature ', '',  );
+method foo ( File :$file! ) returns(Bool) {
+}
+RAW
+method foo ( File :$file! ) returns(Bool) {
+}
+TIDIED
+
+run_test( <<'RAW', <<'TIDIED', 'RT#85076 - handle returns()', '',  );
+method foo returns (Bool) {
+}
+RAW
+method foo returns (Bool) {
+}
+TIDIED
+
+done_testing;

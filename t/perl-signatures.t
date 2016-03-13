@@ -1,93 +1,186 @@
 use lib 't/lib';
+use Test::More;
 use TidierTests;
-TidierTests::do_tests(\*DATA);
 
-__DATA__
-==== Two simple args =================================================
-sub foo ($left, $right) {                 | sub foo ($left, $right) {
-    return $left + $right;                |     return $left + $right;
-}                                         | }
+run_test( <<'RAW', <<'TIDIED', 'Two simple args', '',  );
+sub foo ($left, $right) {
+    return $left + $right;
+}
+RAW
+sub foo ($left, $right) {
+    return $left + $right;
+}
+TIDIED
 
-==== Ignore one arg  =================================================
-sub foo ($first, $, $third) {             | sub foo ($first, $, $third) {
-    return "first=$first, third=$third";  |     return "first=$first, third=$third";
-}                                         | }
+run_test( <<'RAW', <<'TIDIED', 'Ignore one arg ', '',  );
+sub foo ($first, $, $third) {
+    return "first=$first, third=$third";
+}
+RAW
+sub foo ($first, $, $third) {
+    return "first=$first, third=$third";
+}
+TIDIED
 
-==== Default value  =================================================
-sub foo ($left, $right = 0) {             | sub foo ($left, $right = 0) {
-    return $left + $right;                |     return $left + $right;
-}                                         | }
+run_test( <<'RAW', <<'TIDIED', 'Default value ', '',  );
+sub foo ($left, $right = 0) {
+    return $left + $right;
+}
+RAW
+sub foo ($left, $right = 0) {
+    return $left + $right;
+}
+TIDIED
 
-==== More complicated default  =================================================
-my $auto_id = 0;                          | my $auto_id = 0;
-                                          |
-sub foo ($thing, $id = $auto_id++) {      | sub foo ($thing, $id = $auto_id++) {
-    print "$thing has ID $id";            |     print "$thing has ID $id";
-}                                         | }
+run_test( <<'RAW', <<'TIDIED', 'More complicated default ', '',  );
+my $auto_id = 0;
 
-==== Ignored default value =================================================
-sub foo ($thing, $ = 1) {                 | sub foo ($thing, $ = 1) {
-    print $thing;                         |     print $thing;
-}                                         | }
+sub foo ($thing, $id = $auto_id++) {
+    print "$thing has ID $id";
+}
+RAW
+my $auto_id = 0;
 
-==== Really ignore default value =================================================
-sub foo ($thing, $ =) {                   | sub foo ($thing, $ =) {
-    print $thing;                         |     print $thing;
-}                                         | }
+sub foo ($thing, $id = $auto_id++) {
+    print "$thing has ID $id";
+}
+TIDIED
 
-==== Slurpy =================================================
-sub foo ($filter, @inputs) {              | sub foo ($filter, @inputs) {
-    print $filter->($_) foreach @inputs;  |     print $filter->($_) foreach @inputs;
-}                                         | }
+run_test( <<'RAW', <<'TIDIED', 'Ignored default value', '',  );
+sub foo ($thing, $ = 1) {
+    print $thing;
+}
+RAW
+sub foo ($thing, $ = 1) {
+    print $thing;
+}
+TIDIED
 
-==== Ignored slurpy =================================================
-sub foo ($thing, @) {                     | sub foo ($thing, @) {
-    print $thing;                         |     print $thing;
-}                                         | }
+run_test( <<'RAW', <<'TIDIED', 'Really ignore default value', '',  );
+sub foo ($thing, $ =) {
+    print $thing;
+}
+RAW
+sub foo ($thing, $ =) {
+    print $thing;
+}
+TIDIED
 
-==== Hash as an arg =================================================
-sub foo ($filter, %inputs) {              | sub foo ($filter, %inputs) {
-    print $filter->($_, $inputs{$_})      |     print $filter->( $_, $inputs{$_} )
-        foreach sort keys %inputs;        |       foreach sort keys %inputs;
-}                                         | }
+run_test( <<'RAW', <<'TIDIED', 'Slurpy', '',  );
+sub foo ($filter, @inputs) {
+    print $filter->($_) foreach @inputs;
+}
+RAW
+sub foo ($filter, @inputs) {
+    print $filter->($_) foreach @inputs;
+}
+TIDIED
 
-==== Ignored hash =================================================
-sub foo ($thing, %) {                     | sub foo ($thing, %) {
-    print $thing;                         |     print $thing;
-}                                         | }
+run_test( <<'RAW', <<'TIDIED', 'Ignored slurpy', '',  );
+sub foo ($thing, @) {
+    print $thing;
+}
+RAW
+sub foo ($thing, @) {
+    print $thing;
+}
+TIDIED
 
-==== Empty args =================================================
-sub foo () {                              | sub foo () {
-    return 123;                           |     return 123;
-}                                         | }
+run_test( <<'RAW', <<'TIDIED', 'Hash as an arg', '',  );
+sub foo ($filter, %inputs) {
+    print $filter->($_, $inputs{$_})
+        foreach sort keys %inputs;
+}
+RAW
+sub foo ($filter, %inputs) {
+    print $filter->( $_, $inputs{$_} )
+      foreach sort keys %inputs;
+}
+TIDIED
 
-==== Args and a prototype =================================================
-sub foo :prototype($$) ($left, $right) {  | sub foo : prototype($$) ( $left, $right ) {
-    return $left + $right;                |     return $left + $right;
-}                                         | }
+run_test( <<'RAW', <<'TIDIED', 'Ignored hash', '',  );
+sub foo ($thing, %) {
+    print $thing;
+}
+RAW
+sub foo ($thing, %) {
+    print $thing;
+}
+TIDIED
 
-==== Empty hash as default value ===========================================
-sub foo( $x, $y = {} ){         | sub foo ( $x, $y = {} ) {
-    return $x+$y;             |     return $x + $y;
-}                             | }
+run_test( <<'RAW', <<'TIDIED', 'Empty args', '',  );
+sub foo () {
+    return 123;
+}
+RAW
+sub foo () {
+    return 123;
+}
+TIDIED
 
-==== 5.20 annoymous sub ===============================================
-$j->map(                | $j->map(
-  sub ( $x, $ = 0 ) {   |     sub ( $x, $ = 0 ) {
-   $x->method();        |         $x->method();
-  }                     |     }
-);                      | );
+run_test( <<'RAW', <<'TIDIED', 'Args and a prototype', '',  );
+sub foo :prototype($$) ($left, $right) {
+    return $left + $right;
+}
+RAW
+sub foo : prototype($$) ( $left, $right ) {
+    return $left + $right;
+}
+TIDIED
 
-==== 5.20 annoymous sub 2  ===============================================
-my $x = sub ( $x, $ = 0 ) { | my $x = sub ( $x, $ = 0 ) {
-   $x->method();            |     $x->method();
-  };                        | };
+run_test( <<'RAW', <<'TIDIED', 'Empty hash as default value', '',  );
+sub foo( $x, $y = {} ){
+    return $x+$y;
+}
+RAW
+sub foo ( $x, $y = {} ) {
+    return $x + $y;
+}
+TIDIED
 
-==== Simple declaraion and use =============================================
-use strict;                       | use strict;
-use warnings;                     | use warnings;
-sub foo ( $left, $right ) {       | 
-    return $left + $right;        | sub foo ( $left, $right ) {
-}                                 |     return $left + $right;
-say foo( $a, $b );                | }
-~                                 | say foo( $a, $b );
+SKIP: {
+skip 'Perl::Tidy version 20160301 has a bug that impacts this test', 2
+  if $Perl::Tidy::VERSION eq '20160301';
+run_test( <<'RAW', <<'TIDIED', '5.20 annoymous sub', '',  );
+$j->map(
+  sub ( $x, $ = 0 ) {
+   $x->method();
+  }
+);
+RAW
+$j->map(
+    sub ( $x, $ = 0 ) {
+        $x->method();
+    }
+);
+TIDIED
+}
+
+run_test( <<'RAW', <<'TIDIED', '5.20 annoymous sub 2 ', '',  );
+my $x = sub ( $x, $ = 0 ) {
+   $x->method();
+  };
+RAW
+my $x = sub ( $x, $ = 0 ) {
+    $x->method();
+};
+TIDIED
+
+run_test( <<'RAW', <<'TIDIED', 'Simple declaraion and use', '',  );
+use strict;
+use warnings;
+sub foo ( $left, $right ) {
+    return $left + $right;
+}
+say foo( $a, $b );
+RAW
+use strict;
+use warnings;
+
+sub foo ( $left, $right ) {
+    return $left + $right;
+}
+say foo( $a, $b );
+TIDIED
+
+done_testing;

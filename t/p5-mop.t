@@ -1,46 +1,89 @@
 use lib 't/lib';
+use Test::More;
 use TidierTests;
-TidierTests::do_tests(\*DATA);
 
-__DATA__
-==== Simple empty class =================================================
-class Point{                         | class Point {
-}                                    | }
-sub name3{}                          | sub name3 { }
+run_test( <<'RAW', <<'TIDIED', 'Simple empty class', '',  );
+class Point{
+}
+sub name3{}
+RAW
+class Point {
+}
+sub name3 { }
+TIDIED
 
-==== Class with inheritance ===================================
-class   Point3D  extends Point{      | class Point3D extends Point {
-}                                    | }
+run_test( <<'RAW', <<'TIDIED', 'Class with inheritance', '',  );
+class   Point3D  extends Point{
+}
+RAW
+class Point3D extends Point {
+}
+TIDIED
 
-==== Class with attribute ==============================================
-class Point {                  | class Point {
-    has  $!x;                  |     has $!x;
-}                              | }
-                               |
-sub name3 {}                   | sub name3 { }
+run_test( <<'RAW', <<'TIDIED', 'Class with attribute', '',  );
+class Point {
+    has  $!x;
+}
 
-==== Class with attribute and trait ====================================
-class Point {                  | class Point {
-    has $!x  is  ro;           |     has $!x is ro;
-}                              | }
+sub name3 {}
+RAW
+class Point {
+    has $!x;
+}
 
-==== Class with attribute with default value ===========================
-class Point {                  | class Point {
-    has $!x  is  ro  = 1 ;     |     has $!x is ro = 1;
-}                              | }
+sub name3 { }
+TIDIED
 
-==== Class with method ==============================================
-class Point {                  | class Point {
-    has $!x;                   |     has $!x;
-                               |
-    method set_x($x) {         |     method set_x ($x) {
-        $!x = $x;              |         $!x = $x;
-    }                          |     }
-}                              | }
-                               |
-sub name3 {}                   | sub name3 { }
+run_test( <<'RAW', <<'TIDIED', 'Class with attribute and trait', '',  );
+class Point {
+    has $!x  is  ro;
+}
+RAW
+class Point {
+    has $!x is ro;
+}
+TIDIED
 
-==== Multipart class ========================================
-class A::Point {               | class A::Point {
-    has $!x  is  ro  = 1 ;     |     has $!x is ro = 1;
-}                              | }
+run_test( <<'RAW', <<'TIDIED', 'Class with attribute with default value', '',  );
+class Point {
+    has $!x  is  ro  = 1 ;
+}
+RAW
+class Point {
+    has $!x is ro = 1;
+}
+TIDIED
+
+run_test( <<'RAW', <<'TIDIED', 'Class with method', '',  );
+class Point {
+    has $!x;
+
+    method set_x($x) {
+        $!x = $x;
+    }
+}
+
+sub name3 {}
+RAW
+class Point {
+    has $!x;
+
+    method set_x ($x) {
+        $!x = $x;
+    }
+}
+
+sub name3 { }
+TIDIED
+
+run_test( <<'RAW', <<'TIDIED', 'Multipart class', '',  );
+class A::Point {
+    has $!x  is  ro  = 1 ;
+}
+RAW
+class A::Point {
+    has $!x is ro = 1;
+}
+TIDIED
+
+done_testing;

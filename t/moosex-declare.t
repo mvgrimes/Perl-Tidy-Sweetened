@@ -1,28 +1,52 @@
 use lib 't/lib';
+use Test::More;
 use TidierTests;
-TidierTests::do_tests(\*DATA);
 
-__DATA__
-==== Simple class defn =================================================
-class BankAccount {                   | class BankAccount {
-  has 'balance' => ( is => 'rw' );    |     has 'balance' => ( is => 'rw' );
-}                                     | }
+run_test( <<'RAW', <<'TIDIED', 'Simple class defn', '',  );
+class BankAccount {
+  has 'balance' => ( is => 'rw' );
+}
+RAW
+class BankAccount {
+    has 'balance' => ( is => 'rw' );
+}
+TIDIED
 
-==== Class defn with method ============================================
-class BankAccount {                     | class BankAccount {
-    has 'balance' => ( is => 'rw' );    |     has 'balance' => ( is => 'rw' );
-    method deposit (Num $amount){       |
-    $self->inc_balance( $amount );      |     method deposit (Num $amount) {
-    }                                   |         $self->inc_balance($amount);
-}                                       |     }
-~                                       | }
+run_test( <<'RAW', <<'TIDIED', 'Class defn with method', '',  );
+class BankAccount {
+    has 'balance' => ( is => 'rw' );
+    method deposit (Num $amount){
+    $self->inc_balance( $amount );
+    }
+}
+RAW
+class BankAccount {
+    has 'balance' => ( is => 'rw' );
 
-==== Multipart class =====================================================
-class A::Point {               | class A::Point {
-    has $!x  is  ro  = 1 ;     |     has $!x is ro = 1;
-}                              | }
+    method deposit (Num $amount) {
+        $self->inc_balance($amount);
+    }
+}
+TIDIED
 
-==== Class with attrs (GH#5) =============================================
-class A::Point is dirty {      | class A::Point is dirty {
-    has $!x  is  ro  = 1 ;     |     has $!x is ro = 1;
-}                              | }
+run_test( <<'RAW', <<'TIDIED', 'Multipart class', '',  );
+class A::Point {
+    has $!x  is  ro  = 1 ;
+}
+RAW
+class A::Point {
+    has $!x is ro = 1;
+}
+TIDIED
+
+run_test( <<'RAW', <<'TIDIED', 'Class with attrs (GH#5)', '',  );
+class A::Point is dirty {
+    has $!x  is  ro  = 1 ;
+}
+RAW
+class A::Point is dirty {
+    has $!x is ro = 1;
+}
+TIDIED
+
+done_testing;

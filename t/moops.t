@@ -1,56 +1,108 @@
 use lib 't/lib';
+use Test::More;
 use TidierTests;
-TidierTests::do_tests(\*DATA);
 
-__DATA__
-==== Simple class defn =================================================
-class Person {                        | class Person {
-  has 'name' => (is => 'rw');         |     has 'name' => ( is => 'rw' );
-}                                     | }
+run_test( <<'RAW', <<'TIDIED', 'Simple class defn', '',  );
+class Person {
+  has 'name' => (is => 'rw');
+}
+RAW
+class Person {
+    has 'name' => ( is => 'rw' );
+}
+TIDIED
 
-==== TODO: Class defn with Moose =============================================
-class Person using Moose {            | class Person using Moose {
-  has 'name' => ( is => 'rw' );       |     has 'name' => ( is => 'rw' );
-}                                     | }
+run_test( <<'RAW', <<'TIDIED', 'Class defn with Moose', '1',  );
+class Person using Moose {
+  has 'name' => ( is => 'rw' );
+}
+RAW
+class Person using Moose {
+    has 'name' => ( is => 'rw' );
+}
+TIDIED
 
-==== Class defn with version  ===========================================
-class Person 1.2 {                    | class Person 1.2 {
-  has 'name' => ( is => 'rw' );       |     has 'name' => ( is => 'rw' );
-}                                     | }
+run_test( <<'RAW', <<'TIDIED', 'Class defn with version ', '',  );
+class Person 1.2 {
+  has 'name' => ( is => 'rw' );
+}
+RAW
+class Person 1.2 {
+    has 'name' => ( is => 'rw' );
+}
+TIDIED
 
-==== Role defn =================================================
-role NamedThing {                     | role NamedThing {
-  has 'balance' => ( is => 'rw' );    |     has 'balance' => ( is => 'rw' );
-}                                     | }
+run_test( <<'RAW', <<'TIDIED', 'Role defn', '',  );
+role NamedThing {
+  has 'balance' => ( is => 'rw' );
+}
+RAW
+role NamedThing {
+    has 'balance' => ( is => 'rw' );
+}
+TIDIED
 
-==== Class with role =================================================
-class Person with NamedThing;         | class Person with NamedThing;
+run_test( <<'RAW', <<'TIDIED', 'Class with role', '',  );
+class Person with NamedThing;
+RAW
+class Person with NamedThing;
+TIDIED
 
-==== Class that extends another ======================================
-class Employee extends Person {       | class Employee extends Person {
-   has job_title => (is=>'ro');       |     has job_title => ( is => 'ro' );
-}                                     | }
+run_test( <<'RAW', <<'TIDIED', 'Class that extends another', '',  );
+class Employee extends Person {
+   has job_title => (is=>'ro');
+}
+RAW
+class Employee extends Person {
+    has job_title => ( is => 'ro' );
+}
+TIDIED
 
-==== TODO: Class that extends and role ======================================
-class Employee extends Person with Employment {  | class Employee extends Person with Employment {
-   has job_title => (is=>'ro');                  |     has job_title => ( is => 'ro' );
-}                                                | }
+run_test( <<'RAW', <<'TIDIED', 'Class that extends and role', '1',  );
+class Employee extends Person with Employment {
+   has job_title => (is=>'ro');
+}
+RAW
+class Employee extends Person with Employment {
+    has job_title => ( is => 'ro' );
+}
+TIDIED
 
-==== Class with lexical_has ======================================
-class Employee extends Person {        | class Employee extends Person {
-   lexical_has job_title => (is=>'ro');|     lexical_has job_title => ( is => 'ro' );
-}                                      | }
+run_test( <<'RAW', <<'TIDIED', 'Class with lexical_has', '',  );
+class Employee extends Person {
+   lexical_has job_title => (is=>'ro');
+}
+RAW
+class Employee extends Person {
+    lexical_has job_title => ( is => 'ro' );
+}
+TIDIED
 
-==== Class defn with method ============================================
-class BankAccount {                     | class BankAccount {
-    has 'balance' => ( is => 'rw' );    |     has 'balance' => ( is => 'rw' );
-    method deposit (Num $amount){       |
-    $self->inc_balance( $amount );      |     method deposit (Num $amount) {
-    }                                   |         $self->inc_balance($amount);
-}                                       |     }
-~                                       | }
+run_test( <<'RAW', <<'TIDIED', 'Class defn with method', '',  );
+class BankAccount {
+    has 'balance' => ( is => 'rw' );
+    method deposit (Num $amount){
+    $self->inc_balance( $amount );
+    }
+}
+RAW
+class BankAccount {
+    has 'balance' => ( is => 'rw' );
 
-==== TODO: Class with attribute ================================================
-class Person :mutable {                | class Person : mutable {
-   lexical_has job_title => (is=>'ro');|     lexical_has job_title => ( is => 'ro' );
-}                                      | }
+    method deposit (Num $amount) {
+        $self->inc_balance($amount);
+    }
+}
+TIDIED
+
+run_test( <<'RAW', <<'TIDIED', 'Class with attribute', '1',  );
+class Person :mutable {
+   lexical_has job_title => (is=>'ro');
+}
+RAW
+class Person : mutable {
+    lexical_has job_title => ( is => 'ro' );
+}
+TIDIED
+
+done_testing;

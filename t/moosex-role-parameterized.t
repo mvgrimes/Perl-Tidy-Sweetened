@@ -1,9 +1,15 @@
 use lib 't/lib';
+use Test::More;
 use TidierTests;
-TidierTests::do_tests(\*DATA);
 
-__DATA__
-==== Normal sub usage ===================================================
-role {                                | role {
-    method _test => sub { };          |     method _test => sub { };
-};                                    | };
+run_test( <<'RAW', <<'TIDIED', 'Normal sub usage', '',  );
+role {
+    method _test => sub { };
+};
+RAW
+role {
+    method _test => sub { };
+};
+TIDIED
+
+done_testing;
