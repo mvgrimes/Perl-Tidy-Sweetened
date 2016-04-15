@@ -6,20 +6,20 @@ use Perl::Tidy::Sweetened;
 use Test::Most;
 
 use Exporter;
-@TidierTests::ISA = qw(Exporter);
+@TidierTests::ISA    = qw(Exporter);
 @TidierTests::EXPORT = qw(run_test);
 
 sub run_test {
     my ( $raw, $expected, $msg, $todo, @args ) = @_;
 
-    unlink 'perltidy.ERR' if -e 'perltidy.ERR';
-
+    my $errorbuffer = '';
     my @tidied;
     ## warn "# -nsyn -ce -npro -l=60 " . join( ' ', @args ), "\n";
     Perl::Tidy::Sweetened::perltidy(
         source      => \$raw,
         destination => \@tidied,
         perltidyrc  => undef,
+        errorfile   => \$errorbuffer,
         argv        => '-nsyn -ce -npro -l=60 ' . join( ' ', @args ),
     );
     my $tidied = join '', @tidied;
@@ -33,18 +33,18 @@ sub run_test {
             # Works with Test::More after 1.301001_021
             local $TODO = 'Not implmented';
 
-            return check_test( $tidied, $expected, $msg );
+            return check_test( $tidied, $expected, $errorbuffer, $msg );
         }
 
     } else {
-        return check_test( $tidied, $expected, $msg );
+        return check_test( $tidied, $expected, $errorbuffer, $msg );
     }
 }
 
 sub check_test {
-    my ( $tidied, $expected, $msg ) = @_;
+    my ( $tidied, $expected, $errors, $msg ) = @_;
 
-    my $ok_log = ok( !-e 'perltidy.ERR', "$msg: no errors" );
+    my $ok_log = is( $errors, '', "$msg: no errors" );
     my $ok_tidy = eq_or_diff( $tidied, $expected, "$msg: matches" );
 
     return $ok_log && $ok_tidy;
