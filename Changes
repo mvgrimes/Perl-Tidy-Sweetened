@@ -1,5 +1,15 @@
 Changes for Perl::Tidy::Sweetend
 
+1.11 - Fri Apr 15 09:29:03 EDT 2016
+    Sends Perl::Tidy errors during testing to a string instead of fs (GH#9)
+    - By default Perl::Tidy writes a perltidy.ERR file when it encounters
+      errors. Perl::Tidy::Sweetened tests remove the error file then check
+      to see if it is created after each test. This leads to a race
+      condition with running in parallel (ie, prove -j 9). This commit makes
+      Perl::Tidy write errors to a string buffer instead. Thanks @shlomif
+      for the bug report (GH#9).
+    [Only changes tests. No need to upgrade.]
+
 1.10 - Sun Mar 13 13:14:01 EDT 2016
     Skips test that fails with Perl::Tidy 20160301 due to a Perl::Tidy bug
     - Adds test-all script to run against multiple versions of Perl::Tidy
