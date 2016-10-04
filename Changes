@@ -1,5 +1,10 @@
 Changes for Perl::Tidy::Sweetend
 
+1.12 - Tue Oct  4 15:56:53 EDT 2016
+    Add support to extend classes with :: (e.g, Object::Person).
+    Thanks to @pblaberge for the PR.
+    [Upgrade recommended.]
+
 1.11 - Fri Apr 15 09:29:03 EDT 2016
     Sends Perl::Tidy errors during testing to a string instead of fs (GH#9)
     - By default Perl::Tidy writes a perltidy.ERR file when it encounters

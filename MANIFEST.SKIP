@@ -29,6 +29,6 @@ README.md
 
 # Distribution specific
 Perl-Tidy-Sweetened-[\d.]+.tar.gz
-Perl-Tidy-Sweetened-[\d.]+.tar
+Perl-Tidy-Sweetened-[\d.]+
 perltidy\.LOG
 perltidy\.ERR

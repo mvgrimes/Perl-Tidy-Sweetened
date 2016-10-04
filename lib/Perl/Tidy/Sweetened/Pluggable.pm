@@ -5,7 +5,7 @@ package Perl::Tidy::Sweetened::Pluggable;
 use strict;
 use warnings;
 
-our $VERSION = '1.11';
+our $VERSION = '1.12';
 
 sub new {
     my ( $class, %args ) = @_;
@@ -55,7 +55,7 @@ Perl::Tidy::Sweetened::Pluggable - Simple object to facilitate a pluggable filte
 
 =head1 VERSION
 
-version 1.11
+version 1.12
 
 =head1 SYNOPSIS
 
@@ -93,6 +93,10 @@ Gregoy Oschwald (@oschwal)
 =item *
 
 Curtis Brandt (@aggrolite)
+
+=item *
+
+@pblaberge
 
 =back
 

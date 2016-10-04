@@ -8,7 +8,7 @@ use warnings;
 use Carp;
 $|++;
 
-our $VERSION = '1.11';
+our $VERSION = '1.12';
 
 # Regex to match balanced params. Reproduced from Regexp::Common to avoid
 # adding a non-core dependency.
@@ -146,7 +146,7 @@ Perl::Tidy::Sweetened::Keyword::Block - Perl::Tidy::Sweetened filter plugin to d
 
 =head1 VERSION
 
-version 1.11
+version 1.12
 
 =head1 SYNOPSIS
 
@@ -234,6 +234,10 @@ Gregoy Oschwald (@oschwal)
 =item *
 
 Curtis Brandt (@aggrolite)
+
+=item *
+
+@pblaberge
 
 =back
 
