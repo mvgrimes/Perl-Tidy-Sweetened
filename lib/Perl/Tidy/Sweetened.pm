@@ -57,7 +57,7 @@ $plugins->add_filter(
         marker      => 'CLASS',
         replacement => 'package',
         clauses =>
-          [ '(with(\s+\w+)*)?', '(extends \s+ \w+)?', '(is(\s+\w+)*)?', ],
+          [ '(with(\s+\w+)*)?', '(extends \s+ [\w|:]+)?', '(is(\s+\w+)*)?', ],
     ) );
 
 # Create a twigil filter for:

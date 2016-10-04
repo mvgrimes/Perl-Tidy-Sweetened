@@ -58,6 +58,16 @@ class Employee extends Person {
 }
 TIDIED
 
+run_test( <<'RAW', <<'TIDIED', 'Class that extends another with ::', '',  );
+class Employee extends Person::Object {
+   has job_title => (is=>'ro');
+}
+RAW
+class Employee extends Person::Object {
+    has job_title => ( is => 'ro' );
+}
+TIDIED
+
 run_test( <<'RAW', <<'TIDIED', 'Class that extends and role', '1',  );
 class Employee extends Person with Employment {
    has job_title => (is=>'ro');
