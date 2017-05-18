@@ -1,5 +1,10 @@
 Changes for Perl::Tidy::Sweetend
 
+1.13 - Thu May 18 12:47:46 EDT 2017
+    Adds support for closing side comments (GH#12)
+    Thanks to Aaron Priven for the bug report
+    [Upgrade recommended if you use the -csc flag.]
+
 1.12 - Tue Oct  4 15:56:53 EDT 2016
     Add support to extend classes with :: (e.g, Object::Person).
     Thanks to @pblaberge for the PR.
