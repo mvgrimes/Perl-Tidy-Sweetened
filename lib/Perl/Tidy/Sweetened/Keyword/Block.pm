@@ -35,14 +35,13 @@ sub emit_placeholder {
     # Store the signature and returns() for later use
     my $id = $self->{counter}++;
     $self->{store_clause}->{$id} = $clauses;
-    $self->{store_sub}->{$id} = $subname;
+    $self->{store_sub}->{$id}    = $subname;
 
     # Turns 'my_method_name' into 'SUB4ethod_name'
     my $marker = $self->marker . $id;
     substr( $subname, 0, length($marker), $marker );
 
-    return sprintf '%s %s %s',
-      $self->replacement, $marker, $brace;
+    return sprintf '%s %s %s', $self->replacement, $marker, $brace;
 }
 
 sub emit_keyword {
@@ -59,6 +58,11 @@ sub emit_keyword {
     $clause = ' ' . $clause if length $clause;
 
     return sprintf '%s %s%s%s', $self->keyword, $subname, $clause, $brace;
+}
+
+sub emit_csc {
+    my ( $self, $id ) = @_;
+    return sprintf "## tidy end: %s %s", $self->keyword, $self->{store_sub}->{$_};
 }
 
 sub clauses {
@@ -116,6 +120,7 @@ sub postfilter {
     my $marker      = $self->marker;
     my $replacement = $self->replacement;
     my $subname     = $self->identifier;
+    my @ids;
 
     # Convert back to method
     $code =~ s{
@@ -128,8 +133,16 @@ sub postfilter {
         (?<brace>   .*?     ) [ ]* # opening brace on followed orig comments
         [ ]*                       # trailing spaces (not all whitespace)
     }{
+        push @ids, $+{id};
         $self->emit_keyword( $+{newline} . $+{brace}, $+{id} );
     }egmx;
+
+    # Restore the orig sub name when inserted via the -csc flag
+    $code =~ s{
+        \#\# \s tidy \s end: \s sub \s ${marker} $_
+    }{
+        $self->emit_csc( $_ );
+    }egx for @ids;
 
     return $code;
 }
