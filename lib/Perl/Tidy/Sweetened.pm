@@ -37,6 +37,17 @@ $plugins->add_filter(
     ) );
 
 # Create a subroutine filter for:
+#    fun foo (Int $i) {}
+# where the parameter list is optional
+$plugins->add_filter(
+    Perl::Tidy::Sweetened::Keyword::Block->new(
+        keyword     => 'fun',
+        marker      => 'FUN',
+        replacement => 'sub',
+        clauses     => [ 'PAREN?' ],
+    ) );
+
+# Create a subroutine filter for:
 #    method foo (Int $i) returns (Bool) {}
 # where both the parameter list and the returns type are optional
 $plugins->add_filter(
@@ -45,6 +56,28 @@ $plugins->add_filter(
         marker      => 'METHOD',
         replacement => 'sub',
         clauses     => [ 'PAREN?', '(returns \s* PAREN)?' ],
+    ) );
+
+# Create a subroutine filter for:
+#    classmethod foo (Int $i) {}
+# where the parameter list is optional
+$plugins->add_filter(
+    Perl::Tidy::Sweetened::Keyword::Block->new(
+        keyword     => 'classmethod',
+        marker      => 'CLASSMETHOD',
+        replacement => 'sub',
+        clauses     => [ 'PAREN?' ],
+    ) );
+
+# Create a subroutine filter for:
+#    objectmethod foo (Int $i) {}
+# where the parameter list is optional
+$plugins->add_filter(
+    Perl::Tidy::Sweetened::Keyword::Block->new(
+        keyword     => 'objectmethod',
+        marker      => 'OBJECTMETHOD',
+        replacement => 'sub',
+        clauses     => [ 'PAREN?' ],
     ) );
 
 # Create a subroutine filter for:
@@ -126,9 +159,9 @@ following modules, but most of the new syntax styles should work:
 
 =item * Moops
 
-=item * MooseX::Declare
-
 =item * perl 5.20 signatures
+
+=item * Kavorka
 
 =back
 

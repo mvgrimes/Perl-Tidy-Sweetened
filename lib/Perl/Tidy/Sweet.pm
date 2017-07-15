@@ -56,6 +56,12 @@ following modules, but most of the new syntax styles should work:
 
 =item * MooseX::Declare
 
+=item * Moops
+
+=item * perl 5.20 signatures
+
+=item * Kavorka
+
 =back
 
 =head1 SEE ALSO
