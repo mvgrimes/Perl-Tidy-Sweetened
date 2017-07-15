@@ -21,7 +21,7 @@ perltidy-sweet - Script to execute Perl::Tidy::Sweetened cleanup
 This script is a drop in replacement for L<Perl::Tidy>'s C<perltidy> which
 uses L<Perl::Tidy::Sweetened> to cleanup Perl code with a more "modern" syntax
 (ie, L<Method::Signatures::Simple>, L<MooseX::Method::Signatures>,
-L<MooseX::Declare>, etc).
+L<MooseX::Declare>, L<Kavorka> etc).
 
 See the documentation for L<Perl::Tidy> and L<perltidy> for usage. See
 L<Perl::Tidy::Sweetened> for more information about the changes introduced.
