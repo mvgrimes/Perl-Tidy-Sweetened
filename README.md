@@ -4,7 +4,7 @@ Perl::Tidy::Sweetened - Tweaks to Perl::Tidy to support some syntactic sugar
 
 # VERSION
 
-version 1.13
+version 1.14
 
 # STATUS
 
@@ -37,8 +37,8 @@ following modules, but most of the new syntax styles should work:
 - MooseX::Method::Signatures
 - MooseX::Declare
 - Moops
-- MooseX::Declare
 - perl 5.20 signatures
+- Kavorka
 
 # THANKS
 
@@ -59,6 +59,7 @@ Mark Grimes <mgrimes@cpan.org>
 - Gregoy Oschwald (@oschwal)
 - Curtis Brandt (@aggrolite)
 - @pblaberge
+- Peter Roberts (@pwr22)
 
 # SOURCE
 
@@ -74,7 +75,7 @@ feature.
 
 # COPYRIGHT AND LICENSE
 
-This software is copyright (c) 2016 by Mark Grimes <mgrimes@cpan.org>.
+This software is copyright (c) 2018 by Mark Grimes <mgrimes@cpan.org>.
 
 This is free software; you can redistribute it and/or modify it under
 the same terms as the Perl 5 programming language system itself.

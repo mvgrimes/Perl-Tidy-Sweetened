@@ -1,5 +1,10 @@
 Changes for Perl::Tidy::Sweetend
 
+1.14 - Wed Mar 28 17:36:19 EDT 2018
+    Adds support for Kavorka's basic keywords.
+    Thanks to Peter Roberts (@pwr22) for the PR. (GH#13).
+    [Upgrade recommended if you use Kavorka.]
+
 1.13 - Thu May 18 12:47:46 EDT 2017
     Adds support for closing side comments (GH#12)
     Thanks to Aaron Priven for the bug report
