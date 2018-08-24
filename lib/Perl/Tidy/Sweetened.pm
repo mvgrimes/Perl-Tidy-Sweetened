@@ -44,7 +44,7 @@ $plugins->add_filter(
         keyword     => 'fun',
         marker      => 'FUN',
         replacement => 'sub',
-        clauses     => [ 'PAREN?' ],
+        clauses     => ['PAREN?'],
     ) );
 
 # Create a subroutine filter for:
@@ -55,7 +55,8 @@ $plugins->add_filter(
         keyword     => 'method',
         marker      => 'METHOD',
         replacement => 'sub',
-        clauses     => [ 'PAREN?', '(returns \s* PAREN)?' ],
+        clauses =>
+          [ 'PAREN?', '(returns \s* PAREN)?', '(\b(?:is|but|does) \s+ \w+)?' ],
     ) );
 
 # Create a subroutine filter for:
@@ -66,7 +67,7 @@ $plugins->add_filter(
         keyword     => 'classmethod',
         marker      => 'CLASSMETHOD',
         replacement => 'sub',
-        clauses     => [ 'PAREN?' ],
+        clauses     => ['PAREN?'],
     ) );
 
 # Create a subroutine filter for:
@@ -77,7 +78,7 @@ $plugins->add_filter(
         keyword     => 'objectmethod',
         marker      => 'OBJECTMETHOD',
         replacement => 'sub',
-        clauses     => [ 'PAREN?' ],
+        clauses     => ['PAREN?'],
     ) );
 
 # Create a subroutine filter for:
