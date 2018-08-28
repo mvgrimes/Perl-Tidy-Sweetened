@@ -4,7 +4,7 @@ Perl::Tidy::Sweetened - Tweaks to Perl::Tidy to support some syntactic sugar
 
 # VERSION
 
-version 1.14
+version 1.15
 
 # STATUS
 
@@ -52,14 +52,6 @@ The idea and much of original code taken from Jonathan Swartz'
 # AUTHOR
 
 Mark Grimes <mgrimes@cpan.org>
-
-# CONTRIBUTORS
-
-- Kent Fredric (@kentnl)
-- Gregoy Oschwald (@oschwal)
-- Curtis Brandt (@aggrolite)
-- @pblaberge
-- Peter Roberts (@pwr22)
 
 # SOURCE
 
