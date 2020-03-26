@@ -60,6 +60,17 @@ $plugins->add_filter(
     ) );
 
 # Create a subroutine filter for:
+#    around foo (Int $i) returns (Bool) {}
+# where both the parameter list and the returns type are optional
+$plugins->add_filter(
+    Perl::Tidy::Sweetened::Keyword::Block->new(
+        keyword     => 'around',
+        marker      => 'AROUND',
+        replacement => 'sub',
+        clauses     => ['PAREN?'],
+    ) );
+
+# Create a subroutine filter for:
 #    classmethod foo (Int $i) {}
 # where the parameter list is optional
 $plugins->add_filter(
