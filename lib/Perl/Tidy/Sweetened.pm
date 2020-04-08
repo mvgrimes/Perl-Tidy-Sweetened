@@ -61,14 +61,16 @@ $plugins->add_filter(
 
 # Create a subroutine filter for:
 #    around foo (Int $i) returns (Bool) {}
+#    before foo (Int $i) returns (Bool) {}
+#    after foo (Int $i) returns (Bool) {}
 # where both the parameter list and the returns type are optional
 $plugins->add_filter(
     Perl::Tidy::Sweetened::Keyword::Block->new(
-        keyword     => 'around',
-        marker      => 'AROUND',
+        keyword     => $_,
+        marker      => uc($_),
         replacement => 'sub',
         clauses     => ['PAREN?'],
-    ) );
+    ) ) for qw(around before after);
 
 # Create a subroutine filter for:
 #    classmethod foo (Int $i) {}
