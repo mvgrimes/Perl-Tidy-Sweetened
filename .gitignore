@@ -17,6 +17,7 @@ tmp/
 Changes.bak
 log/tmp.log*
 _build_params
+cpanfile.snapshot
 
 .plenv-version
 local/
