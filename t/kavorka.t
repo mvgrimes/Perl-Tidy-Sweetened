@@ -1,6 +1,6 @@
 use lib 't/lib';
 use Test::More;
-use TidierTests;
+use TidierTests qw(run_test $indent);
 
 run_test( <<'RAW', <<'TIDIED', 'Simple method usage', '',  );
 method name1{

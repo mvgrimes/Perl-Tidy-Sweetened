@@ -6,8 +6,9 @@ use Perl::Tidy::Sweetened;
 use Test::Most;
 
 use Exporter;
-@TidierTests::ISA    = qw(Exporter);
-@TidierTests::EXPORT = qw(run_test $indent);
+@TidierTests::ISA       = qw(Exporter);
+@TidierTests::EXPORT    = qw(run_test);
+@TidierTests::EXPORT_OK = qw($indent);
 
 sub run_test {
     my ( $raw, $expected, $msg, $todo, @args ) = @_;
@@ -51,6 +52,6 @@ sub check_test {
 }
 
 require Perl::Tidy;
-our $indent = ' ' x (($Perl::Tidy::VERSION < 20200907) ? 6 : 4);
+our $indent = ' ' x ( ( $Perl::Tidy::VERSION < 20200907 ) ? 6 : 4 );
 
 1;
