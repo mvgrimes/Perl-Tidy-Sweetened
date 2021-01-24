@@ -116,6 +116,9 @@ $plugins->add_filter(
     ) );
 
 sub perltidy {
+    my %args = @_;
+    $plugins->add_args( $args{argv} );
+
     return Perl::Tidy::perltidy(
         prefilter  => sub { $plugins->prefilter( $_[0] ) },
         postfilter => sub { $plugins->postfilter( $_[0] ) },

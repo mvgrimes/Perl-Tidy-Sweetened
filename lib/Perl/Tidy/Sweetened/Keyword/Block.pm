@@ -61,8 +61,8 @@ sub emit_keyword {
 }
 
 sub emit_csc {
-    my ( $self, $id ) = @_;
-    return sprintf "## tidy end: %s %s", $self->keyword, $self->{store_sub}->{$_};
+    my ( $self, $id, $cscp ) = @_;
+    return sprintf "%s %s %s", $cscp, $self->keyword, $self->{store_sub}->{$_};
 }
 
 sub clauses {
@@ -116,7 +116,7 @@ sub prefilter {
 }
 
 sub postfilter {
-    my ( $self, $code ) = @_;
+    my ( $self, $code, $args ) = @_;
     my $marker      = $self->marker;
     my $replacement = $self->replacement;
     my $subname     = $self->identifier;
@@ -138,10 +138,11 @@ sub postfilter {
     }egmx;
 
     # Restore the orig sub name when inserted via the -csc flag
+    my $cscp = $args->{'-cscp'} || '## end';
     $code =~ s{
-        \#\# \s tidy \s end: \s sub \s ${marker} $_
+        \Q${cscp}\E \s sub \s ${marker} $_
     }{
-        $self->emit_csc( $_ );
+        $self->emit_csc( $_, $cscp );
     }egx for @ids;
 
     return $code;

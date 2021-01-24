@@ -14,6 +14,8 @@ sub new {
 
 sub filters { return ( $_[0]->{filters} ||= [] ) }
 
+sub args { return ( $_[0]->{args} ||= {} ) }
+
 sub add_filter {
     my $self = shift;
     push @{ $self->filters }, @_;
@@ -22,7 +24,7 @@ sub add_filter {
 sub prefilter {
     my ( $self, $code ) = @_;
     for my $filter ( @{ $self->filters } ) {
-        $code = $filter->prefilter($code);
+        $code = $filter->prefilter($code, $self->args);
     }
 
     # warn "After prefilter, before tidy\n";
@@ -38,9 +40,16 @@ sub postfilter {
     # warn $code;
 
     for my $filter ( @{ $self->filters } ) {
-        $code = $filter->postfilter($code);
+        $code = $filter->postfilter($code, $self->args);
     }
     return $code;
+}
+
+sub add_args {
+    my ( $self,       $args ) = @_;
+    my ( $body_parts, $msg )  = Perl::Tidy::parse_args($args);
+    $self->{args} =
+      { map { my ( $k, $v ) = split /=/, $_, 2; ( $k => $v ) } @$body_parts };
 }
 
 1;
