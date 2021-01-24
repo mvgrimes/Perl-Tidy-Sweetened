@@ -5,7 +5,7 @@ package Perl::Tidy::Sweetened::Pluggable;
 use strict;
 use warnings;
 
-our $VERSION = '1.16';
+our $VERSION = '1.17';
 
 sub new {
     my ( $class, %args ) = @_;
@@ -64,7 +64,7 @@ Perl::Tidy::Sweetened::Pluggable - Simple object to facilitate a pluggable filte
 
 =head1 VERSION
 
-version 1.16
+version 1.17
 
 =head1 SYNOPSIS
 
@@ -101,7 +101,7 @@ feature.
 
 =head1 COPYRIGHT AND LICENSE
 
-This software is copyright (c) 2018 by Mark Grimes E<lt>mgrimes@cpan.orgE<gt>.
+This software is copyright (c) 2021 by Mark Grimes E<lt>mgrimes@cpan.orgE<gt>.
 
 This is free software; you can redistribute it and/or modify it under
 the same terms as the Perl 5 programming language system itself.

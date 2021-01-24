@@ -7,7 +7,7 @@ use strict;
 use warnings;
 use Perl::Tidy qw();
 
-our $VERSION = '1.16';
+our $VERSION = '1.17';
 
 use Perl::Tidy::Sweetened::Pluggable;
 use Perl::Tidy::Sweetened::Keyword::Block;
@@ -138,7 +138,7 @@ Perl::Tidy::Sweetened - Tweaks to Perl::Tidy to support some syntactic sugar
 
 =head1 VERSION
 
-version 1.16
+version 1.17
 
 =head1 STATUS
 
@@ -209,7 +209,7 @@ feature.
 
 =head1 COPYRIGHT AND LICENSE
 
-This software is copyright (c) 2018 by Mark Grimes E<lt>mgrimes@cpan.orgE<gt>.
+This software is copyright (c) 2021 by Mark Grimes E<lt>mgrimes@cpan.orgE<gt>.
 
 This is free software; you can redistribute it and/or modify it under
 the same terms as the Perl 5 programming language system itself.
