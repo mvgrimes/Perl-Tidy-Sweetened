@@ -158,6 +158,9 @@ keywords (see the 2010-12-17 entry in the Perl::Tidy
 L<CHANGES|https://metacpan.org/source/SHANCOCK/Perl-Tidy-20120714/CHANGES>
 file). B<The resulting formatted code will leave the parameter lists untouched.>
 
+For handling of closing-side-comments (at end of sub/method/function) you must
+use perltidy with the default of --csc='## end'.
+
 C<Perl::Tidy::Sweetened> attempts to support the syntax outlined in the
 following modules, but most of the new syntax styles should work:
 
