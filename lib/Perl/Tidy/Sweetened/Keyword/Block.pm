@@ -33,11 +33,11 @@ sub emit_placeholder {
     my ( $self, $subname, $brace, $clauses ) = @_;
 
     # Store the signature and returns() for later use
-    my $id = $self->{counter}++;
+    my $id = sprintf "%03d", $self->{counter}++;
     $self->{store_clause}->{$id} = $clauses;
     $self->{store_sub}->{$id}    = $subname;
 
-    # Turns 'my_method_name' into 'SUB4ethod_name'
+    # Turns 'my_method_name' into 'SUB004hod_name'
     my $marker = $self->marker . $id;
     substr( $subname, 0, length($marker), $marker );
 
@@ -55,6 +55,9 @@ sub emit_keyword {
     # Combine clauses (parameter list, returns(), etc) into a string separate
     # each with a space and lead with a space if there are any
     my $clause = join ' ', grep { length $_ } @$clauses;
+
+    # FIXME: This forces space between sub/func/method name and clauses list
+    # (ignores perltidy settings)
     $clause = ' ' . $clause if length $clause;
 
     return sprintf '%s %s%s%s', $self->keyword, $subname, $clause, $brace;
@@ -127,7 +130,7 @@ sub postfilter {
         ^\s*\K                     # preserve leading whitespace
         $replacement          \s+  # keyword was converted to sub/package
         $marker                    #
-        (?<id> \d+)                # the identifier
+        (?<id> \d\d\d)             # the identifier
         [\w:]* \b                  # the rest of the orignal sub/package name
         (?<newline> \n? \s* )      # possible newline and indentation
         (?<brace>   .*?     ) [ ]* # opening brace on followed orig comments
