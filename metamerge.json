@@ -2,12 +2,12 @@
    "name" : "Perl-Tidy-Sweetened",
    "resources" : {
       "repository" : {
-         "web" : "http://github.com/mvgrimes/Perl-Tidy-Sweetened",
-         "url" : "http://github.com/mvgrimes/Perl-Tidy-Sweetened.git",
+         "web" : "https://github.com/mvgrimes/Perl-Tidy-Sweetened",
+         "url" : "https://github.com/mvgrimes/Perl-Tidy-Sweetened.git",
          "type" : "git"
       },
       "bugtracker" : {
-         "web" : "http://github.com/mvgrimes/Perl-Tidy-Sweetened/issues"
+         "web" : "https://github.com/mvgrimes/Perl-Tidy-Sweetened/issues"
       }
    },
    "x_contributors" : [

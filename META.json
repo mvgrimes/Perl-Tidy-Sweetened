@@ -4,7 +4,7 @@
       "Mark Grimes E<lt>mgrimes@cpan.orgE<gt>"
    ],
    "dynamic_config" : 0,
-   "generated_by" : "App::ModuleBuildTiny version 0.023",
+   "generated_by" : "App::ModuleBuildTiny version 0.027",
    "license" : [
       "perl_5"
    ],
@@ -21,7 +21,7 @@
       },
       "develop" : {
          "requires" : {
-            "App::ModuleBuildTiny" : "0.023"
+            "App::ModuleBuildTiny" : "0.027"
          }
       },
       "runtime" : {
@@ -64,12 +64,12 @@
    "release_status" : "stable",
    "resources" : {
       "bugtracker" : {
-         "web" : "http://github.com/mvgrimes/Perl-Tidy-Sweetened/issues"
+         "web" : "https://github.com/mvgrimes/Perl-Tidy-Sweetened/issues"
       },
       "repository" : {
          "type" : "git",
-         "url" : "http://github.com/mvgrimes/Perl-Tidy-Sweetened.git",
-         "web" : "http://github.com/mvgrimes/Perl-Tidy-Sweetened"
+         "url" : "https://github.com/mvgrimes/Perl-Tidy-Sweetened.git",
+         "web" : "https://github.com/mvgrimes/Perl-Tidy-Sweetened"
       }
    },
    "version" : "1.18",
@@ -80,5 +80,6 @@
       "@pblaberge",
       "Peter Roberts (@pwr22)"
    ],
-   "x_serialization_backend" : "JSON::PP version 2.27400_02"
+   "x_serialization_backend" : "JSON::PP version 2.27400_02",
+   "x_spdx_expression" : "Artistic-1.0-Perl OR GPL-1.0-or-later"
 }
