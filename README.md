@@ -22,7 +22,7 @@ Unfortunately, they can break the support tools that the Perl community has
 come to rely on. This module attempts to work around those issues.
 
 The module uses
-[Perl::Tidy](https://metacpan.org/pod/Perl::Tidy)'s `prefilter` and `postfilter` hooks to support `method` and
+[Perl::Tidy](https://metacpan.org/pod/Perl%3A%3ATidy)'s `prefilter` and `postfilter` hooks to support `method` and
 `func` keywords, including the (possibly multi-line) parameter lists. This is
 quite an ugly hack, but it is the recommended method of supporting these new
 keywords (see the 2010-12-17 entry in the Perl::Tidy
@@ -47,7 +47,7 @@ The idea and much of original code taken from Jonathan Swartz'
 
 # SEE ALSO
 
-[Perl::Tidy](https://metacpan.org/pod/Perl::Tidy)
+[Perl::Tidy](https://metacpan.org/pod/Perl%3A%3ATidy)
 
 # AUTHOR
 
