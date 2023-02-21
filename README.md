@@ -4,7 +4,7 @@ Perl::Tidy::Sweetened - Tweaks to Perl::Tidy to support some syntactic sugar
 
 # VERSION
 
-version 1.18
+version 1.19
 
 # STATUS
 
@@ -59,7 +59,7 @@ Source repository is at [https://github.com/mvgrimes/Perl-Tidy-Sweetened](https:
 
 # BUGS
 
-Please report any bugs or feature requests on the bugtracker website [http://github.com/mvgrimes/Perl-Tidy-Sweetened/issues](http://github.com/mvgrimes/Perl-Tidy-Sweetened/issues)
+Please report any bugs or feature requests on the bugtracker website [https://github.com/mvgrimes/Perl-Tidy-Sweetened/issues](https://github.com/mvgrimes/Perl-Tidy-Sweetened/issues)
 
 When submitting a bug or request, please include a test-file or a
 patch to an existing test-file that illustrates the bug or desired
@@ -67,7 +67,7 @@ feature.
 
 # COPYRIGHT AND LICENSE
 
-This software is copyright (c) 2021 by Mark Grimes <mgrimes@cpan.org>.
+This software is copyright (c) 2023 by Mark Grimes <mgrimes@cpan.org>.
 
 This is free software; you can redistribute it and/or modify it under
 the same terms as the Perl 5 programming language system itself.
