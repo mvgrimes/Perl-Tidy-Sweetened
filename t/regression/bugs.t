@@ -129,8 +129,8 @@ sub test {
 }
 TIDIED
 
-run_test( <<'RAW', <<'TIDIED', 'RT#106464 - MooseX::Role::Parameterized', '1',  );
-method _path => sub { $path };
+run_test( <<'RAW', <<'TIDIED', 'RT#106464 - MooseX::Role::Parameterized', '',  );
+method   _path  =>  sub  {$path};
 RAW
 method _path => sub { $path };
 TIDIED
