@@ -8,7 +8,7 @@ use warnings;
 use Carp;
 $|++;
 
-our $VERSION = '1.19';
+our $VERSION = '1.20';
 
 # Regex to match balanced params. Reproduced from Regexp::Common to avoid
 # adding a non-core dependency.
@@ -88,7 +88,7 @@ sub clauses {
 sub identifier {    # method or package identifier
     my $self = shift;
 
-    return '\w+ (?: ::\w+ )*';    # words, possibly separated by ::
+    return '[$@%]? \w+ (?: ::\w+ )*';    # words, possibly with twigil and/or separated by ::
 }
 
 sub prefilter {
@@ -163,7 +163,7 @@ Perl::Tidy::Sweetened::Keyword::Block - Perl::Tidy::Sweetened filter plugin to d
 
 =head1 VERSION
 
-version 1.19
+version 1.20
 
 =head1 SYNOPSIS
 
